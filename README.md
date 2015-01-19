@@ -35,3 +35,5 @@ cd ~/computing
 wget http://mirrors.ibiblio.org/apache/spark/spark-1.1.0/spark-1.1.0.tgz
 tar xvf spark-1.1.0.tgz 
 
+cd spark-1.1.0
+sbt/sbt assembly
