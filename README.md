@@ -37,3 +37,5 @@ tar xvf spark-1.1.0.tgz
 
 cd spark-1.1.0
 sbt/sbt assembly
+"Test"
+./bin/run-example SparkPi 10
