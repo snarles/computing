@@ -39,3 +39,12 @@ cd spark-1.1.0
 sbt/sbt assembly
 "Test"
 ./bin/run-example SparkPi 10
+
+# running an example in python
+
+./bin/pyspark
+
+>>> import os as os
+>>> os.getcwd()
+'/home/snarles/computing/spark-1.1.0'
+
