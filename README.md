@@ -49,13 +49,15 @@ snarles@snarles-OptiPlex-990:~/computing$ IPYTHON_OPTS="notebook" ./spark-1.1.0/
 Check disk usage:
 df -ah
 
-use apt-get update
-
 Installation list:
-sudo apt-get emacs24
-sudo apt-add-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install oracle-java7-installer
-sudo apt-get install build-essential
-sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
-sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+
+sudo apt-add-repository -y ppa:webupd8team/java
+sudo apt-get -y update
+sudo apt-get -y emacs24
+sudo apt-get -y install oracle-java7-installer build-essential libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+
+# Native memory allocation (malloc) failed to allocate 1431699456 bytes for committing reserved memory.
+
+
+
+
