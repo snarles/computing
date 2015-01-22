@@ -26,7 +26,7 @@ sudo tar xvf scala-2.10.4.tgz
 
 cd ~/
 sudo echo export SCALA_HOME=/usr/local/src/scala/scala-2.10.4 >> .bashrc
-sudo echo export PATH=$SCALA_HOME/bin:$PATH >> .bashrc
+sudo echo export PATH=\$SCALA_HOME/bin:\$PATH >> .bashrc
 . .bashrc
 scala -version
 
