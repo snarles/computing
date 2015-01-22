@@ -42,9 +42,5 @@ sbt/sbt assembly
 
 # running an example in python
 
-./bin/pyspark
-
->>> import os as os
->>> os.getcwd()
-'/home/snarles/computing/spark-1.1.0'
+snarles@snarles-OptiPlex-990:~/computing$ IPYTHON_OPTS="notebook" ./spark-1.1.0/bin/pyspark
 
