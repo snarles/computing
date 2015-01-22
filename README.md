@@ -52,7 +52,7 @@ Installation list:
 
 sudo apt-add-repository -y ppa:webupd8team/java
 sudo apt-get -y update
-sudo apt-get -y install oracle-java7-installer build-essential libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose emacs24 git
+sudo apt-get -y install oracle-java7-installer build-essential libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose emacs24 git awscli
 sudo mkdir /usr/local/src/scala
 cd /usr/local/src/scala
 sudo wget http://www.scala-lang.org/files/archive/scala-2.10.4.tgz
@@ -69,6 +69,8 @@ sbt/sbt assembly
 
 # Native memory allocation (malloc) failed to allocate 1431699456 bytes for committing reserved memory.
 
+aws s3 cp s3://braindatatest/all_b1000_1_bvecs.csv all_b1000_1_bvecs.csv
 
+aws s3 cp s3://braindatatest/all_b1000_1_data.csv all_b1000_1_data.csv
 
 
