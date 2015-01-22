@@ -52,8 +52,20 @@ Installation list:
 
 sudo apt-add-repository -y ppa:webupd8team/java
 sudo apt-get -y update
-sudo apt-get -y emacs24
-sudo apt-get -y install oracle-java7-installer build-essential libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+sudo apt-get -y install oracle-java7-installer build-essential libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose emacs24
+sudo mkdir /usr/local/src/scala
+cd /usr/local/src/scala
+sudo wget http://www.scala-lang.org/files/archive/scala-2.10.4.tgz
+sudo tar xvf scala-2.10.4.tgz
+cd ~/
+sudo echo export SCALA_HOME=/usr/local/src/scala/scala-2.10.4 >> .bashrc
+sudo echo export PATH=\$SCALA_HOME/bin:\$PATH >> .bashrc
+. .bashrc
+scala -version
+wget http://mirrors.ibiblio.org/apache/spark/spark-1.1.0/spark-1.1.0.tgz
+tar xvf spark-1.1.0.tgz 
+cd spark-1.1.0
+sbt/sbt assembly
 
 # Native memory allocation (malloc) failed to allocate 1431699456 bytes for committing reserved memory.
 
