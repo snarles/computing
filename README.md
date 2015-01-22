@@ -67,10 +67,81 @@ tar xvf spark-1.1.0.tgz
 cd spark-1.1.0
 sbt/sbt assembly
 
-# Native memory allocation (malloc) failed to allocate 1431699456 bytes for committing reserved memory.
+# test S3
 
 aws s3 cp s3://braindatatest/all_b1000_1_bvecs.csv all_b1000_1_bvecs.csv
 
 aws s3 cp s3://braindatatest/all_b1000_1_data.csv all_b1000_1_data.csv
 
+# install X forwarding
+
+sudo apt-get install xauth x11-apps firefox -y
+
+# deploy spark on a private cluster
+
+IP addresses (temporary)
+
+ssh -i HomePair.pem ubuntu@54.191.255.115 -Y
+ssh -i HomePair.pem ubuntu@54.191.200.81 -Y
+ssh -i HomePair.pem ubuntu@54.200.5.186 -Y
+ssh -i HomePair.pem ubuntu@54.187.62.181 -Y
+
+ubuntu@ip-172-31-12-177:
+./spark-1.1.0/sbin/start-master.sh
+#  starting org.apache.spark.deploy.master.Master, logging to /home/ubuntu/spark-1.1.0/sbin/../logs/spark-ubuntu-org.apache.spark.deploy.master.Master-1-ip-172-31-12-177.out
+echo localhost > spark-1.1.0/conf/slaves
+echo ubuntu@54.191.200.81 >> spark-1.1.0/conf/slaves
+echo ubuntu@54.200.5.186 >> spark-1.1.0/conf/slaves
+echo ubuntu@54.187.62.181 >> spark-1.1.0/conf/slaves
+more spark-1.1.0/conf/slaves
+
+./spark-1.1.0/sbin/start-slaves.sh
+
+http://localhost:8080
+"Spark Master at spark://ip-172-31-12-177:7077 "
+
+#ubuntu@ip-172-31-12-177:~/Downloads$ ssh-add HomePair.pem 
+#Could not open a connection to your authentication agent.
+
+# Setting up ssh-agent
+# http://mah.everybody.org/docs/ssh
+scp -i HomePair.pem HomePair.pem ubuntu@54.191.200.81:~/
+scp -i HomePair.pem HomePair.pem ubuntu@54.200.5.186:~/
+scp -i HomePair.pem HomePair.pem ubuntu@54.187.62.181:~/
+
+ssh-keygen -t dsa -f ~/.ssh/id_dsa -C "AWS2@snarles"
+scp -i HomePair.pem ~/.ssh/id_dsa ubuntu@54.191.200.81:.ssh/
+cat ~/.ssh/id_dsa.pub | ssh -i HomePair.pem ubuntu@54.191.200.81 'cat - >> ~/.ssh/authorized_keys'
+scp -i HomePair.pem ~/.ssh/id_dsa ubuntu@54.200.5.186:.ssh/
+cat ~/.ssh/id_dsa.pub | ssh -i HomePair.pem ubuntu@54.200.5.186 'cat - >> ~/.ssh/authorized_keys'
+scp -i HomePair.pem ~/.ssh/id_dsa ubuntu@54.187.62.181:.ssh/
+cat ~/.ssh/id_dsa.pub | ssh -i HomePair.pem ubuntu@54.187.62.181 'cat - >> ~/.ssh/authorized_keys'
+
+
+ssh-keygen -t dsa -f ~/.ssh/id_dsa -C "AWS2@snarles"
+scp -i HomePair.pem ~/.ssh/id_dsa ubuntu@54.191.255.115:.ssh/
+
+
+ssh ubuntu@54.191.200.81
+
+ssh ubuntu@54.187.62.181
+
+eval ssh-agent $SHELL
+~/Downloads$ ssh-add HomePair.pem 
+
+
+ssh ubuntu@54.191.255.115 -Y
+ssh ubuntu@54.191.200.81 -Y
+ssh ubuntu@54.200.5.186 -Y
+ssh ubuntu@54.187.62.181 -Y
+
+ls -l ~/spark-1.1.0/logs
+
+echo  >> ~/spark-1.1.0/conf/spark-env.sh.template
+echo SPARK_MASTER_IP = 54.191.255.115 >> ~/spark-1.1.0/conf/spark-env.sh.template
+scp ~/spark-1.1.0/conf/spark-env.sh.template ubuntu@54.191.200.81:~/spark-1.1.0/conf/spark-env.sh
+scp ~/spark-1.1.0/conf/spark-env.sh.template ubuntu@54.200.5.186:~/spark-1.1.0/conf/spark-env.sh
+scp ~/spark-1.1.0/conf/spark-env.sh.template ubuntu@54.187.62.181:~/spark-1.1.0/conf/spark-env.sh
+
+./spark-1.1.0/sbin/start-slaves.sh 
 
