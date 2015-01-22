@@ -137,11 +137,37 @@ ssh ubuntu@54.187.62.181 -Y
 
 ls -l ~/spark-1.1.0/logs
 
-echo  >> ~/spark-1.1.0/conf/spark-env.sh.template
-echo SPARK_MASTER_IP = 54.191.255.115 >> ~/spark-1.1.0/conf/spark-env.sh.template
+echo SPARK_MASTER_IP = 172-31-12-177 > ~/spark-1.1.0/conf/spark-env.sh.template
 scp ~/spark-1.1.0/conf/spark-env.sh.template ubuntu@54.191.200.81:~/spark-1.1.0/conf/spark-env.sh
 scp ~/spark-1.1.0/conf/spark-env.sh.template ubuntu@54.200.5.186:~/spark-1.1.0/conf/spark-env.sh
 scp ~/spark-1.1.0/conf/spark-env.sh.template ubuntu@54.187.62.181:~/spark-1.1.0/conf/spark-env.sh
 
 ./spark-1.1.0/sbin/start-slaves.sh 
 
+
+# Just use script
+
+./spark-ec2 -k HomePair -i ~/Downloads/HomePair.pem -s 3 --region=us-west-2 launch AutoSpark
+./spark-ec2 -k HomePair -i ~/Downloads/HomePair.pem --region=us-west-2 login AutoSpark
+
+spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
+
+./spark-ec2 stop AutoSpark
+./spark-ec2 -i ~/Downloads/HomePair.pem start AutoSpark
+
+# connect remotely
+
+./bin/pyspark --master spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
+data = [1, 2, 3, 4, 5]
+distData = sc.parallelize(data)
+ans =  distData.reduce(lambda a, b: a + b)
+
+./run spark.examples.GroupByTest spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
+
+# installing things on amazon linux
+
+yum install xauth
+cd /usr/local
+wget http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/35.0/linux-x86_64/en-US/firefox-35.0.tar.bz2
+tar xvjf firefox-35.0.tar.bz2
+ln -s /usr/local/firefox/firefox /usr/bin/firefox
