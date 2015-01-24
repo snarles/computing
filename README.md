@@ -152,8 +152,8 @@ scp ~/spark-1.1.0/conf/spark-env.sh.template ubuntu@54.187.62.181:~/spark-1.1.0/
 
 spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
 
-./spark-ec2 stop AutoSpark
-./spark-ec2 -i ~/Downloads/HomePair.pem start AutoSpark
+./spark-ec2 stop AutoSpark --region=us-west-2
+./spark-ec2 -i ~/Downloads/HomePair.pem start AutoSpark --region=us-west-2
 
 # connect remotely
 
@@ -171,3 +171,10 @@ cd /usr/local
 wget http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/35.0/linux-x86_64/en-US/firefox-35.0.tar.bz2
 tar xvjf firefox-35.0.tar.bz2
 ln -s /usr/local/firefox/firefox /usr/bin/firefox
+
+
+# playing around with boto (customizing the setup script)
+
+sudo pip install boto
+
+"Make a text file in ~/Downloads with the access key id and the secret access code"
