@@ -124,4 +124,30 @@ ans =  distData.reduce(lambda a, b: a + b)
 
 ## installing spark R
 
+### https://github.com/amplab-extras/SparkR-pkg/wiki/SparkR-on-EC2
+
+
+#### /usr/bin/ld: cannot find -ljvm
+cd /root
+wget http://cran.cnr.berkeley.edu/src/contrib/rJava_0.9-6.tar.gz
+tar xvzf rJava_0.9-6.tar.gz
+R CMD javareconf
+R CMD INSTALL rJava
+R CMD javareconf
+
+/root/spark-ec2/copy-dir rJava_0.9-6.tar.gz
+/root/spark/sbin/slaves.sh R CMD javareconf
+/root/spark/sbin/slaves.sh R CMD INSTALL ~/rJava_0.9-6.tar.gz
+
+cd /root
+git clone https://github.com/amplab-extras/SparkR-pkg.git
+cd SparkR-pkg
+./install-dev.sh
+/root/spark-ec2/copy-dir /root/SparkR-pkg
+
+cat /root/spark-ec2/cluster-url
+MASTER=spark://<master_hostname>:7077 ./sparkR
+
+
+
 
