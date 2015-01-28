@@ -152,6 +152,7 @@ spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
 
 ## connect remotely
 
+IPYTHON_OPTS="notebook" ./bin/pyspark --master spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
 ./bin/pyspark --master spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
 data = [1, 2, 3, 4, 5]
 distData = sc.parallelize(data)
