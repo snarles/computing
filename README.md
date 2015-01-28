@@ -100,6 +100,24 @@ more spark-1.1.0/conf/slaves
 http://localhost:8080
 "Spark Master at spark://ip-172-31-12-177:7077 "
 
+#### set up passwordless login everywhere
+
+scp -i HomePair.pem HomePair.pem ubuntu@54.191.200.81:~/ scp -i HomePair.pem HomePair.pem ubuntu@54.200.5.186:~/ scp -i HomePair.pem HomePair.pem ubuntu@54.187.62.181:~/
+
+ssh-keygen -t dsa -f ~/.ssh/id_dsa -C "AWS2@snarles" scp -i HomePair.pem ~/.ssh/id_dsa ubuntu@54.191.200.81:.ssh/ cat ~/.ssh/id_dsa.pub | ssh -i HomePair.pem ubuntu@54.191.200.81 'cat - >> ~/.ssh/authorized_keys' scp -i HomePair.pem ~/.ssh/id_dsa ubuntu@54.200.5.186:.ssh/ cat ~/.ssh/id_dsa.pub | ssh -i HomePair.pem ubuntu@54.200.5.186 'cat - >> ~/.ssh/authorized_keys' scp -i HomePair.pem ~/.ssh/id_dsa ubuntu@54.187.62.181:.ssh/ cat ~/.ssh/id_dsa.pub | ssh -i HomePair.pem ubuntu@54.187.62.181 'cat - >> ~/.ssh/authorized_keys'
+
+ssh-keygen -t dsa -f ~/.ssh/id_dsa -C "AWS2@snarles" scp -i HomePair.pem ~/.ssh/id_dsa ubuntu@54.191.255.115:.ssh/
+
+ssh ubuntu@54.191.200.81
+
+ssh ubuntu@54.187.62.181
+
+eval ssh-agent $SHELL ~/Downloads$ ssh-add HomePair.pem
+
+ssh ubuntu@54.191.255.115 -Y ssh ubuntu@54.191.200.81 -Y ssh ubuntu@54.200.5.186 -Y ssh ubuntu@54.187.62.181 -Y
+
+
+
 ####ubuntu@ip-172-31-12-177:~/Downloads$ ssh-add HomePair.pem 
 ####Could not open a connection to your authentication agent.
 
