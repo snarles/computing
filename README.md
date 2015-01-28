@@ -126,10 +126,17 @@ install.packages(c("rJava","devtools"))
 library(devtools); install_github("amplab-extras/SparkR-pkg", subdir="pkg")
 
 
+#### http://www.r-bloggers.com/instructions-for-installing-using-r-on-amazon-ec2/
 
+sudo useradd rstudio
+sudo mkdir /home/rstudio
+sudo passwd rstudio
+sudo chmod -R 0777 /home/rstudio
 
-
-
+sudo apt-get -y install gdebi-core libapparmor1
+cd /tmp
+wget http://download2.rstudio.org/rstudio-server-0.97.336-amd64.deb
+sudo gdebi rstudio-server-0.97.336-amd64.deb
 
 
 
