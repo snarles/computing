@@ -1,4 +1,4 @@
-# computing
+# Spark on Ubuntu EC2
 
 Computing stuff
 
@@ -116,6 +116,25 @@ eval ssh-agent $SHELL ~/Downloads$ ssh-add HomePair.pem
 
 ssh ubuntu@54.191.255.115 -Y ssh ubuntu@54.191.200.81 -Y ssh ubuntu@54.200.5.186 -Y ssh ubuntu@54.187.62.181 -Y
 
+### install Spark R
+
+sudo apt-get -y install r-base-dev
+sudo apt-get -y install ess libcurl4-gnutls-dev
+sudo R CMD javareconf
+sudo R
+install.packages(c("rJava","devtools"))
+library(devtools); install_github("amplab-extras/SparkR-pkg", subdir="pkg")
+
+
+
+
+
+
+
+
+
+
+# EC2 script
 
 
 ####ubuntu@ip-172-31-12-177:~/Downloads$ ssh-add HomePair.pem 
