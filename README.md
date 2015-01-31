@@ -167,32 +167,31 @@ ans =  distData.reduce(lambda a, b: a + b)
 
 ./run spark.examples.GroupByTest spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
 
-## installing spark R
+## setting up IPython notebook
+##### http://ipython.org/ipython-doc/1/interactive/public_server.html
 
-### https://github.com/amplab-extras/SparkR-pkg/wiki/SparkR-on-EC2
+Set up password:
+http://ipython.org/ipython-doc/1/interactive/public_server.html
+passwd()
+We use the password 'stat'
+'sha1:3c71e050bc41:2387d9bc7ed6c1f325686bdcf54826b99c98ee28'
 
 
-#### /usr/bin/ld: cannot find -ljvm
-cd /root
-wget http://cran.cnr.berkeley.edu/src/contrib/rJava_0.9-6.tar.gz
-tar xvzf rJava_0.9-6.tar.gz
-R CMD javareconf
-R CMD INSTALL rJava
-R CMD javareconf
+ipython profile create nbserver
+cd /root/.ipython/profile_nbserver
+vi ipython_notebook_config.py
 
-/root/spark-ec2/copy-dir rJava_0.9-6.tar.gz
-/root/spark/sbin/slaves.sh R CMD javareconf
-/root/spark/sbin/slaves.sh R CMD INSTALL ~/rJava_0.9-6.tar.gz
 
-cd /root
-git clone https://github.com/amplab-extras/SparkR-pkg.git
-cd SparkR-pkg
-./install-dev.sh
-/root/spark-ec2/copy-dir /root/SparkR-pkg
+#### Notebook config
+c = get_config()
+c.IPKernelApp.pylab = 'inline'  # if you want plotting support always
+c.NotebookApp.ip = '*'
+c.NotebookApp.open_browser = False
+c.NotebookApp.password = 'sha1:3c71e050bc41:2387d9bc7ed6c1f325686bdcf54826b99c98ee28'
+c.NotebookApp.port = 8888
 
-cat /root/spark-ec2/cluster-url
-MASTER=spark://<master_hostname>:7077 ./sparkR
-
+#### start notebook
+ipython notebook --profile=nbserver
 
 
 
