@@ -69,9 +69,16 @@ sbt/sbt assembly
 
 ## test S3
 
-aws s3 cp s3://braindatatest/all_b1000_1_bvecs.csv all_b1000_1_bvecs.csv
 
+aws s3 cp s3://braindatatest/all_b1000_1_bvecs.csv all_b1000_1_bvecs.csv
 aws s3 cp s3://braindatatest/all_b1000_1_data.csv all_b1000_1_data.csv
+aws s3 cp s3://braindatatest/all_b2000_1_bvecs.csv all_b2000_1_bvecs.csv
+aws s3 cp s3://braindatatest/all_b2000_1_data.csv all_b2000_1_data.csv
+aws s3 cp s3://braindatatest/all_b4000_1_bvecs.csv all_b4000_1_bvecs.csv
+aws s3 cp s3://braindatatest/all_b4000_1_data.csv all_b4000_1_data.csv
+
+
+
 
 ### install X forwarding
 
@@ -152,6 +159,9 @@ sudo gdebi rstudio-server-0.97.336-amd64.deb
 ./spark-ec2 -k HomePair -i ~/Downloads/HomePair.pem -s 3 --region=us-west-2 launch AutoSpark
 ./spark-ec2 -k HomePair -i ~/Downloads/HomePair.pem --region=us-west-2 login AutoSpark
 
+yum update
+yum upgrade
+
 spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
 
 ./spark-ec2 stop AutoSpark --region=us-west-2
@@ -193,5 +203,19 @@ c.NotebookApp.port = 8888
 #### start notebook
 ipython notebook --profile=nbserver
 
+#### alternative method
+export IPYTHON_OPTS="notebook --pylab inline --ip=* --port=8888"
 
+#### http://nbviewer.ipython.org/gist/JoshRosen/6856670
 
+yum install -y python27 python27-devel
+yum install pssh
+pssh -h /root/spark-ec2/slaves yum install -y python27
+wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python27
+easy_install-2.7 pip
+pip install ipython[all]
+pip install requests numpy
+yum install -y freetype-devel libpng-devel
+pip install matplotlib
+
+export PYSPARK_PYTHON=python2.7
