@@ -82,10 +82,10 @@ cd ~/spark-1.2.0/ec2
 ```
 
 Options:
-* launch [cluster name]
-* -k <name of key pair>
-* -i <where key pair file is located>
-* -s <number of slaves>
+* launch `[cluster name]`
+* -k `<name of key pair>`
+* -i `<where key pair file is located>`
+* -s `<number of slaves>`
 
 To check the cluster, locate the "public DNS" of the master node.
 You can find it in the AWS management console [(screenshot)](https://raw.githubusercontent.com/snarles/computing/master/tutorial/publicDNS.png)
