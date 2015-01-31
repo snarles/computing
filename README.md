@@ -206,10 +206,16 @@ ipython notebook --profile=nbserver
 #### alternative method
 export IPYTHON_OPTS="notebook --pylab inline --ip=* --port=8888"
 
+/root/spark/conf/spark-env.sh: line 23: [1]: command not found
+/root/spark/conf/spark-env.sh: line 24: [2]: command not found
+/root/spark/conf/spark-env.sh: line 25: [3]: command not found
+
+
 #### http://nbviewer.ipython.org/gist/JoshRosen/6856670
 
 yum install -y python27 python27-devel
 yum install pssh
+yum install pscp
 pssh -h /root/spark-ec2/slaves yum install -y python27
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python27
 easy_install-2.7 pip
@@ -218,4 +224,10 @@ pip install requests numpy
 yum install -y freetype-devel libpng-devel
 pip install matplotlib
 
-export PYSPARK_PYTHON=python2.7
+git clone http://code.google.com/p/parallel-ssh/
+python parallel-ssh/setup.py install
+
+echo export PYSPARK_PYTHON=python2.7 >> spark/conf/spark-env.sh
+pscp -h /root/spark-ec2/slaves py27.sh
+pssh -h /root/spark-ec2/slaves bash py27.sh
+
