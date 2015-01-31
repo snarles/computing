@@ -38,6 +38,7 @@ Next, we need to login to install some more stuff.  Use
 
 ### Additional installation
 
+You are now logged into the master node, an EC2 instance.
 We need to install Python 2.7 and parallel SSH.  Accordingly, use the following:
 
 ```
@@ -79,7 +80,7 @@ pssh -h /root/spark-ec2/slaves bash py27.sh
 
 We are almost there!
 
-Set up the IPython options:
+Inside the EC2 instance, set up the IPython options:
 ```
 export IPYTHON_OPTS="notebook --pylab inline --ip=* --port=8888"
 ```
@@ -94,13 +95,17 @@ bash bin/pyspark
 
 Get the Public IP of the master node, e.g. 54.149.69.218.
 You can use the command `hostname` to do this.
-Then point your browser to
+
+Back at home, point your browser to
 ```
 http://54.149.69.218:8888
 ```
 
+You will see the IPython notebook directory list.
+
 ### Compute Pi!
 
+You are now looking at IPython notebook in your browser.
 Create a new notebook and enter the following lines.  These are copied from spark-1.2.0/examples/src/main/python.
 
 ```
@@ -108,7 +113,7 @@ from random import random
 from operator import add
 ```
 
-Also:
+This next line is where the magic happens:
 ```
 from pyspark import SparkContext
 ```
