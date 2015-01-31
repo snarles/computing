@@ -30,8 +30,8 @@ sudo echo export PATH=\$SCALA_HOME/bin:\$PATH >> .bashrc
 . .bashrc
 scala -version
 
-cd ~/computing
-wget http://mirrors.ibiblio.org/apache/spark/spark-1.1.0/spark-1.1.0.tgz
+cd ~/
+wget http://mirrors.ibiblio.org/apache/spark/spark-1.2.0/spark-1.2.0.tgz
 tar xvf spark-1.1.0.tgz 
 
 cd spark-1.1.0
@@ -69,9 +69,16 @@ sbt/sbt assembly
 
 ## test S3
 
-aws s3 cp s3://braindatatest/all_b1000_1_bvecs.csv all_b1000_1_bvecs.csv
 
+aws s3 cp s3://braindatatest/all_b1000_1_bvecs.csv all_b1000_1_bvecs.csv
 aws s3 cp s3://braindatatest/all_b1000_1_data.csv all_b1000_1_data.csv
+aws s3 cp s3://braindatatest/all_b2000_1_bvecs.csv all_b2000_1_bvecs.csv
+aws s3 cp s3://braindatatest/all_b2000_1_data.csv all_b2000_1_data.csv
+aws s3 cp s3://braindatatest/all_b4000_1_bvecs.csv all_b4000_1_bvecs.csv
+aws s3 cp s3://braindatatest/all_b4000_1_data.csv all_b4000_1_data.csv
+
+
+
 
 ### install X forwarding
 
@@ -152,6 +159,9 @@ sudo gdebi rstudio-server-0.97.336-amd64.deb
 ./spark-ec2 -k HomePair -i ~/Downloads/HomePair.pem -s 3 --region=us-west-2 launch AutoSpark
 ./spark-ec2 -k HomePair -i ~/Downloads/HomePair.pem --region=us-west-2 login AutoSpark
 
+yum update
+yum upgrade
+
 spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
 
 ./spark-ec2 stop AutoSpark --region=us-west-2
@@ -167,32 +177,58 @@ ans =  distData.reduce(lambda a, b: a + b)
 
 ./run spark.examples.GroupByTest spark://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:7077
 
-## installing spark R
+## setting up IPython notebook
+##### http://ipython.org/ipython-doc/1/interactive/public_server.html
 
-### https://github.com/amplab-extras/SparkR-pkg/wiki/SparkR-on-EC2
+Set up password:
+http://ipython.org/ipython-doc/1/interactive/public_server.html
+passwd()
+We use the password 'stat'
+'sha1:3c71e050bc41:2387d9bc7ed6c1f325686bdcf54826b99c98ee28'
 
 
-#### /usr/bin/ld: cannot find -ljvm
+ipython profile create nbserver
+cd /root/.ipython/profile_nbserver
+vi ipython_notebook_config.py
+
+
+#### Notebook config
+c = get_config()
+c.IPKernelApp.pylab = 'inline'  # if you want plotting support always
+c.NotebookApp.ip = '*'
+c.NotebookApp.open_browser = False
+c.NotebookApp.password = 'sha1:3c71e050bc41:2387d9bc7ed6c1f325686bdcf54826b99c98ee28'
+c.NotebookApp.port = 8888
+
+#### start notebook
+ipython notebook --profile=nbserver
+
+#### alternative method
+export IPYTHON_OPTS="notebook --pylab inline --ip=* --port=8888"
+
+/root/spark/conf/spark-env.sh: line 23: [1]: command not found
+/root/spark/conf/spark-env.sh: line 24: [2]: command not found
+/root/spark/conf/spark-env.sh: line 25: [3]: command not found
+
+
+#### http://nbviewer.ipython.org/gist/JoshRosen/6856670
+
 cd /root
-wget http://cran.cnr.berkeley.edu/src/contrib/rJava_0.9-6.tar.gz
-tar xvzf rJava_0.9-6.tar.gz
-R CMD javareconf
-R CMD INSTALL rJava
-R CMD javareconf
-
-/root/spark-ec2/copy-dir rJava_0.9-6.tar.gz
-/root/spark/sbin/slaves.sh R CMD javareconf
-/root/spark/sbin/slaves.sh R CMD INSTALL ~/rJava_0.9-6.tar.gz
-
-cd /root
-git clone https://github.com/amplab-extras/SparkR-pkg.git
-cd SparkR-pkg
-./install-dev.sh
-/root/spark-ec2/copy-dir /root/SparkR-pkg
-
-cat /root/spark-ec2/cluster-url
-MASTER=spark://<master_hostname>:7077 ./sparkR
+yum update
+yum upgrade
+yum install -y python27 python27-devel
+git clone http://code.google.com/p/parallel-ssh/
+python parallel-ssh/setup.py install
+pssh -h /root/spark-ec2/slaves yum install -y python27
+wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python27
+easy_install-2.7 pip
+pip install ipython[all]
+pip install requests numpy
+yum install -y freetype-devel libpng-devel
+pip install matplotlib
 
 
-
+echo export PYSPARK_PYTHON=python2.7 >> spark/conf/spark-env.sh
+pscp -h /root/spark-ec2/slaves py27.sh
+pssh -h /root/spark-ec2/slaves bash py27.sh
 
