@@ -61,7 +61,13 @@ IPYTHON_OPTS="notebook" ./bin/pyspark
 
 Go to your Amazon EC2 console and create a Key Pair.
 
+![Screenshot]
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/keypair.png)
 
+Download the key pair (e.g. to ~/Downloads) and change the permissions:
+```
+chmod 400 ~/Downloads/KeyPair.pem
+```
 
 Locate your "Access key ID" and "Secret Access key".  Then set them as environmental variables
 ```
@@ -69,5 +75,29 @@ export AWS_ACCESS_KEY_ID=FAKE77ALDNADNKAND77FAKE
 export AWS_SECRET_ACCESS_KEY=92348hsdbf77isFAKE77skdklj038h0sdffosjh
 ```
 
-./spark-ec2 -k <keypair> -i <key-file> -s <num-slaves> launch <cluster-name>,
+Now you can launch some clusters! Here is a command you can use, I will explain the options below.
+```
+cd ~/spark-1.2.0/ec2
+./spark-ec2 -k KeyPair -i ~/Downloads/KeyPair.pem -s 3 --region=us-west-2 launch AutoSpark
+```
 
+Options:
+* launch `[cluster name]`
+* -k `<name of key pair>`
+* -i `<where key pair file is located>`
+* -s `<number of slaves>`
+* --region `your AWS region`
+
+To check the cluster, locate the "public DNS" of the master node.
+You can find it in the AWS management console [(screenshot)](https://raw.githubusercontent.com/snarles/computing/master/tutorial/publicDNS.png)
+e.g. "ec2-54-200-61-40.us-west-2.compute.amazonaws.com"
+
+Then type in your browser
+```
+http://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:8080
+```
+to see the Spark cluster status page.
+
+After this, you can go ahead and stop all the clusters (through the AWS management console).
+
+In the next tutorial, we will do some more configuration so we can connect to pyspark remotely.
