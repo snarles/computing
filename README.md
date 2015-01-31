@@ -30,8 +30,8 @@ sudo echo export PATH=\$SCALA_HOME/bin:\$PATH >> .bashrc
 . .bashrc
 scala -version
 
-cd ~/computing
-wget http://mirrors.ibiblio.org/apache/spark/spark-1.1.0/spark-1.1.0.tgz
+cd ~/
+wget http://mirrors.ibiblio.org/apache/spark/spark-1.2.0/spark-1.2.0.tgz
 tar xvf spark-1.1.0.tgz 
 
 cd spark-1.1.0
