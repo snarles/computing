@@ -86,6 +86,7 @@ Options:
 * -k `<name of key pair>`
 * -i `<where key pair file is located>`
 * -s `<number of slaves>`
+* --region `your AWS region`
 
 To check the cluster, locate the "public DNS" of the master node.
 You can find it in the AWS management console [(screenshot)](https://raw.githubusercontent.com/snarles/computing/master/tutorial/publicDNS.png)
