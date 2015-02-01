@@ -91,7 +91,12 @@ This should open the IPython notebook interface, you can download and open the
 
 ### Launch Spark on EC2
 
-Go to your Amazon EC2 console and create a Key Pair.
+Go to your Amazon EC2 console. Click on the "Key pairs" link:
+
+![Screenshot]
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/key_pair_link.png)
+
+And create a Key Pair:
 
 ![Screenshot]
 (https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/keypair.png)
@@ -128,7 +133,8 @@ Then type in your browser
 ```
 http://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:8080
 ```
-to see the Spark cluster status page.
+to see the Spark cluster status page [ARIEL: I believe that this wouldn't work
+before changing the inbound security groups in the next tutorial!].
 
 After this, you can go ahead and stop all the clusters (through the AWS management console).
 

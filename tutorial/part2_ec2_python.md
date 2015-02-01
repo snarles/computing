@@ -50,11 +50,11 @@ git clone http://code.google.com/p/parallel-ssh/
 python parallel-ssh/setup.py install
 pssh -h /root/spark-ec2/slaves yum install -y python27
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python27
-easy_install-2.7 pip
-pip install ipython[all]
-pip install requests numpy
+easy_install pip
+pip install --upgrade  ipython[all]
+pip install --upgrade requests numpy
 yum install -y freetype-devel libpng-devel
-pip install matplotlib
+pip install --upgrade matplotlib
 ```
 
 Now create a file `py27.sh`.
@@ -62,12 +62,15 @@ Inside the file, write
 ```
 echo export PYSPARK_PYTHON=python2.7 >> spark/conf/spark-env.sh
 ```
+
 Now copy the file to all the slave nodes:
+
+[Ariel: this is where things stopped working for me...]
 ```
 pscp -h /root/spark-ec2/slaves py27.sh
 ```
 
-### Modify spark configuration to use Python 2,7
+### Modify spark configuration to use Python 2.7
 
 You will need to go through this step every time you resart the cluster.
 
