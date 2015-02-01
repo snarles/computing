@@ -46,8 +46,11 @@ cd /root
 yum update
 yum upgrade
 yum install -y python27 python27-devel
+yum install -y pssh
 git clone http://code.google.com/p/parallel-ssh/
-python parallel-ssh/setup.py install
+cd parallel-ssh
+python setup.py install
+cd /root
 pssh -h /root/spark-ec2/slaves yum install -y python27
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python27
 easy_install-2.7 pip
@@ -64,7 +67,7 @@ echo export PYSPARK_PYTHON=python2.7 >> spark/conf/spark-env.sh
 ```
 Now copy the file to all the slave nodes:
 ```
-pscp -h /root/spark-ec2/slaves py27.sh
+pscp -h /root/spark-ec2/slaves py27.sh .
 ```
 
 ### Modify spark configuration to use Python 2,7
@@ -87,9 +90,17 @@ export IPYTHON_OPTS="notebook --pylab inline --ip=* --port=8888"
 You can set a password and SSH key through the IPYTHON_OPTS.
 See refs for more details.
 
+Since the spark cluster is already running, we need to restart it:
+```
+cd /root/spark/sbin
+./stop-all.sh
+./start-all.sh
+```
+
+
 Now, launch the notebook
 ```
-cd /root/spark-1.2.0/
+cd /root/spark
 bash bin/pyspark
 ```
 
