@@ -85,7 +85,7 @@ Options:
 * launch `[cluster name]`
 * -k `<name of key pair>`
 * -i `<where key pair file is located>`
-* -s `<number of slaves>`
+* -s `<number of slaves>` Note: the default AWS instance limit is 20, so you can have up to 19 slaves: less if you already have instances.
 * --region `your AWS region`
 
 To check the cluster, locate the "public DNS" of the master node.
