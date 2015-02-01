@@ -2,7 +2,7 @@
 
 Authors:
  * Charles Zheng (Stanford)
- * Balasumbramanian Narasimhan (Stanford)
+ * Balasubramanian Narasimhan (Stanford)
  * Ariel Rokem (Stanford)
 
 Work in progress!
