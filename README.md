@@ -30,8 +30,8 @@ sudo echo export PATH=\$SCALA_HOME/bin:\$PATH >> .bashrc
 . .bashrc
 scala -version
 
-cd ~/computing
-wget http://mirrors.ibiblio.org/apache/spark/spark-1.1.0/spark-1.1.0.tgz
+cd ~/
+wget http://mirrors.ibiblio.org/apache/spark/spark-1.2.0/spark-1.2.0.tgz
 tar xvf spark-1.1.0.tgz 
 
 cd spark-1.1.0
@@ -213,9 +213,12 @@ export IPYTHON_OPTS="notebook --pylab inline --ip=* --port=8888"
 
 #### http://nbviewer.ipython.org/gist/JoshRosen/6856670
 
+cd /root
+yum update
+yum upgrade
 yum install -y python27 python27-devel
-yum install pssh
-yum install pscp
+git clone http://code.google.com/p/parallel-ssh/
+python parallel-ssh/setup.py install
 pssh -h /root/spark-ec2/slaves yum install -y python27
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python27
 easy_install-2.7 pip
@@ -224,8 +227,6 @@ pip install requests numpy
 yum install -y freetype-devel libpng-devel
 pip install matplotlib
 
-git clone http://code.google.com/p/parallel-ssh/
-python parallel-ssh/setup.py install
 
 echo export PYSPARK_PYTHON=python2.7 >> spark/conf/spark-env.sh
 pscp -h /root/spark-ec2/slaves py27.sh
