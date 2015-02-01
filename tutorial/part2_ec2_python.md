@@ -169,4 +169,4 @@ Finally, close the connection:
 ## Next steps
 
 Now you can run all of the examples in the spark-1.2.0/examples/src/main/python folder.
-For your convenience, we have collected all of those examples in [this notebook](http://nbviewer.ipython.org/github/snarles/computing/blob/master/includedExamples/sparkPiTest.ipynb).
+For your convenience, we have collected all of those examples in [this notebook](http://nbviewer.ipython.org/github/snarles/computing/blob/master/examples/included_examples.ipynb).
