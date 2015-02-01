@@ -62,7 +62,7 @@ IPYTHON_OPTS="notebook" ./bin/pyspark
 Go to your Amazon EC2 console and create a Key Pair.
 
 ![Screenshot]
-(https://raw.githubusercontent.com/snarles/computing/master/tutorial/keypair.png)
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/keypair.png)
 
 Download the key pair (e.g. to ~/Downloads) and change the permissions:
 ```

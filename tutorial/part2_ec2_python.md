@@ -14,10 +14,10 @@ It is strongly recommended to follow the instructions in the links to implement 
 In your AWS, modify the "AutoSpark-master" security group to open ports 8080-9000:
 
 ![Screenshot1]
-(https://raw.githubusercontent.com/snarles/computing/master/tutorial/security_edit.png)
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/security_edit.png)
 
 ![Screenshot2]
-(https://raw.githubusercontent.com/snarles/computing/master/tutorial/security_edit2.png)
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/security_edit2.png)
 
 By default, port 8080 is used by the Spark status screen, port 8787 is used by RStudio and port 8888 by IPython notebook.
 
