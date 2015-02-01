@@ -39,25 +39,37 @@ Next, we need to login to install some more stuff.  Use
 ### Additional installation
 
 You are now logged into the master node, an EC2 instance.
-We need to install Python 2.7 and parallel SSH.  Accordingly, use the following:
+We need to install Python 2.7 and parallel SSH.
+First, install pssh and pscp.
 
 ```
 cd /root
 yum update
 yum upgrade
-yum install -y python27 python27-devel
-yum install -y pssh
 git clone http://code.google.com/p/parallel-ssh/
 cd parallel-ssh
 python setup.py install
+```
+
+Now we create an installation script `install_py27.sh` to send to all slaves
+```
 cd /root
-pssh -h /root/spark-ec2/slaves yum install -y python27
+yum install -y python27 python27-devel
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python27
 easy_install-2.7 pip
 pip install ipython[all]
 pip install requests numpy
 yum install -y freetype-devel libpng-devel
 pip install matplotlib
+```
+Copy the file to all the slave nodes.
+```
+pscp -h /root/spark-ec2/slaves install_py27.sh .
+```
+Execute the file on the root, and also on slaves
+```
+pssh -h /root/spark-ec2/slaves bash install_py27.sh &
+bash install_py27.sh
 ```
 
 Now create a file `py27.sh`.
