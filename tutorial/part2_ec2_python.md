@@ -61,6 +61,9 @@ pip install ipython[all]
 pip install requests numpy
 yum install -y freetype-devel libpng-devel
 pip install matplotlib
+pip install --upgrade ipython
+pip install --upgrade numpy
+pip install --upgrade matplotlib
 ```
 Copy the file to all the slave nodes.
 ```
