@@ -44,25 +44,62 @@ cd spark-1.2.0
 sbt/sbt assembly
 ```
 
-### Test the installtion locally
+### Installing spark on Mac OS 10.10 (Yosemite)
+
+- Download the recent spark from the [spark website](http://spark.apache.org/downloads.html), and extract the archive.
+
+- Download and install [scala](http://www.scala-lang.org/download/)
+
+- Extract the resulting archive, and add the `bin` directory from the extracted
+  archive to the environment `PATH` variable. For example, by adding the
+  following lines to your `.bash_profile` or `.bashrc`:  
+
+```
+export SCALA_HOME=/path/to/scala-2.10.4 
+export PATH=$PATH:$SCALA_HOME/bin
+```
+
+- In the top level of the Spark extracted archive run:
+
+```
+sbt/sbt clean assembly
+```
+
+### Test the installation locally
 
 Run the following example:
 ```
-cd ~/spark-1.2.0
+cd path/to/spark-1.2.0
 ./bin/run-example SparkPi 10
 ```
 
-Try Ipython:
+Among all the other things that get output to the terminal window, you should
+be able to see the text:
+
+```
+Pi is roughly 3.141788
+```
+
+Try IPython (you'll need to [install IPython](http://ipython.org/install.html) for this to work:
+
 ```
 IPYTHON_OPTS="notebook" ./bin/pyspark
 ```
 
+This should open the IPython notebook interface, you can download and open the
+[SparkPi Notebook](https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/SparkPi.ipynb) and you should be able to run it and get the same result.
+
 ### Launch Spark on EC2
 
-Go to your Amazon EC2 console and create a Key Pair.
+Go to your Amazon EC2 console. Click on the "Key pairs" link:
 
 ![Screenshot]
-(https://raw.githubusercontent.com/snarles/computing/master/tutorial/keypair.png)
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/key_pair_link.png)
+
+And create a Key Pair:
+
+![Screenshot]
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/keypair.png)
 
 Download the key pair (e.g. to ~/Downloads) and change the permissions:
 ```
@@ -96,7 +133,8 @@ Then type in your browser
 ```
 http://ec2-54-200-61-40.us-west-2.compute.amazonaws.com:8080
 ```
-to see the Spark cluster status page.
+to see the Spark cluster status page [ARIEL: I believe that this wouldn't work
+before changing the inbound security groups in the next tutorial!].
 
 After this, you can go ahead and stop all the clusters (through the AWS management console).
 
