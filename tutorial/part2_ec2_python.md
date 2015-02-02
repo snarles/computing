@@ -170,3 +170,38 @@ Finally, close the connection:
 
 Now you can run all of the examples in the spark-1.2.0/examples/src/main/python folder.
 For your convenience, we have collected all of those examples in [this notebook](http://nbviewer.ipython.org/github/snarles/computing/blob/master/examples/included_examples.ipynb).
+
+## Rapid setup via AMI
+
+After you have installed all the packages you need on one node, you can rapidly create new slave nodes for that cluster by using Amazon machine images.
+
+In the EC2 management console, select the node you wish to copy, and choose Actions: Image: Create Image.
+![creating AMI]
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/ami1.png)
+
+Choose a name for the AMI.
+![AMI creation options]
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/ami2.png)
+
+After a few minutes, your AMI will be avaliable from the Images : AMIs sidebar menu.
+![AMIs sidebar]
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/ami4.png)
+
+Select your AMI and click the Launch button.
+![Launch AMI]
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/ami4.png)
+
+Some details for launching:
+ * Choose the instance type (which determines number of cores and storage options)
+ * At first, launch a number of instances equal to the number of slaves you require
+
+At step 6 of the launch configuration, set the security group to match the slaves security group of your existing cluster.
+
+![Configure security]
+(https://raw.githubusercontent.com/snarles/computing/master/tutorial/assets/ami5.png)
+
+You can use the same technique to create a new master node,
+by assigning the master node security group to an instance.
+Doing so, you can create an entirely new cluster.
+However, you will have to change the security groups of the nodes in the old cluster,
+otherwise they will be launched alongside the new instances.
