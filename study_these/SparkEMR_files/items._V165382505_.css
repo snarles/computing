@@ -1,0 +1,321 @@
+.bordlt {
+  border-left: 1px solid #ccc;
+}
+
+#details #content {
+  padding: 5px 0;
+  margin: 28px 0 20px;
+  clear: both;
+}
+#details {
+  clear: both;
+}
+#details .dump {
+  clear: both;
+  color: #aaa;
+  float: none;
+}
+
+#detailsMeta {
+  float: left;
+  border: 1px solid #EAEAEA;
+  padding: 1px;
+  width: 100%;
+}
+
+#detailsMeta ul {
+  padding-left: 22px;
+  width: 339px;
+  margin-right: 0;
+  margin: 0;
+  float: left;
+}
+#detailsMeta ul li {
+  background-image: none;
+  list-style-type: none;
+  padding-left: 0;
+}
+#details {
+  margin-top: 15px;
+}
+
+#comments {
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+}
+
+#comments h2.h1, #details h2.h1 {
+  margin-top: 0;
+  margin-bottom: 11px;
+}
+#comments .comment {
+  margin-bottom: 20px;
+  position: relative;
+  clear: both;
+}
+#comments .comment .bubble {
+  border: 1px solid #d7ecfc;
+  background-color: #f7fbfe;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  padding: 11px;
+  line-height: 1.5em;
+}
+#comments .comment .title {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+#comments .comment .content {
+  white-space: pre-wrap;
+}
+#comments .comment .attribution {
+  margin-top: -1px;
+}
+#comments .comment .attribution img {
+  vertial-align: bottom;
+  bottom: 0;
+  left: 17px;
+  position: relative;
+}
+#comments .comment .attribution .author {
+  display: inline;
+  position: relative;
+  bottom: 3px;
+  left: 19px;
+  color: #777;
+  font-size: 11px;
+}
+
+#articleMeta .metaLeft {
+    font-weight: bold;
+    text-align: right;
+    padding: 6px 6px 3px 0;
+    padding-right: 3px;
+    font-size: 12px;
+    line-height: 17px;
+    width: 35%;
+}
+
+#articleMeta .metaRight {
+    text-align: left;
+    padding: 6px 6px 0 3px;
+    font-size: 12px;
+    line-height: 17px;
+    width: 65%;
+}
+
+#catalogItem {
+    padding-top: 20px;
+}
+
+#catalogItem h1 {
+color:#E47911;
+font-family:verdana,arial,helvetica,sans-serif;
+font-size:170%;
+font-weight:normal;
+margin: 1.5em 0 1em;
+padding: 0;
+}
+
+#catalogItem h2 {
+color:#146EB4;
+font-size:145%;
+font-weight:normal;
+margin: 1em 0;
+padding: 0;
+}
+
+#catalogItem h3 {
+color:#000000;
+font-size:120%;
+font-weight:bold;
+padding-top: 0px;
+padding-left: 0px;
+}
+
+#catalogItem h4 {
+color:#666666;
+font-size:105%;
+font-weight:bold;
+padding:0;
+}
+
+#catalogItem p {
+line-height: 1.5em;
+margin-top:1em;
+margin-bottom:1em;
+}
+
+#catalogItem ul li {
+background-image:none;
+list-style-type:disc;
+margin-bottom:0px;
+padding-left:0px;
+}
+
+#catalogItem table {
+border-left:1px solid #CCCCCC;
+border-top:1px solid #CCCCCC;
+margin-right:20px;
+}
+
+#catalogItem th {
+background-color:#EEEEEE;
+border-bottom:1px solid #CCCCCC;
+border-right:1px solid #CCCCCC;
+font-size:12px;
+font-weight:bold;
+padding:5px;
+text-align:left;
+vertical-align:top;
+}
+
+#catalogItem td {
+border-bottom:1px solid #CCCCCC;
+border-right:1px solid #CCCCCC;
+font-size:12px;
+padding:5px;
+vertical-align:top;
+}
+
+#catalogItem pre {
+width: 95%;
+}
+
+.aws-code {
+background-color:#EFF7FF;
+border:1px dashed #333333;
+font-family:"Courier New",Courier,mono;
+font-size:12px;
+margin-bottom:5px;
+margin-right:20px;
+margin-top:5px;
+max-height:500px;
+overflow:auto;
+padding:5px;
+}
+
+.bordrt {
+border-right: 1px solid #CCCCCC;
+}
+
+.detailsTitle {
+    background: #FFFFFF;
+    position: relative;
+    top: 10px;
+    left: -4px;
+    padding: 2px;
+    display: inline;
+}
+
+.downloadBox {
+text-align: center;
+}
+
+.linerMeta {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  -moz-background-clip: border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:white url(//d36cz9buwru1tt.cloudfront.net/detailGradient.png) repeat-x scroll center bottom;
+  width: 100%;
+}
+
+.metaTable {
+margin-left: 20px;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.width66 {
+    width: 66%;
+}
+
+/*
+  Styles for messages
+  From https://design.amazon.com/patterns/node/24
+    only modification is to replace '../sprites/' with '/images/' in image urls
+*/
+
+/* begin alert,message,error styles */
+
+.msg {
+	font-size: 12px;
+	border: solid 1px #0071B5;
+	position: relative;
+	background-color: #ffffdd;
+	padding: 8px 50px 8px 0px;
+	margin: 10px 0px;
+}
+.msg span {
+	left: 10px;
+	top: 10px;
+	width: 25px;
+	height: 25px;
+	display: block;
+	position: absolute;
+	background-image: url(//d36cz9buwru1tt.cloudfront.net/error-sprite.gif);
+	background-repeat: no-repeat;
+}
+.msg h6 {
+	font-size: 13px;
+	font-weight: bold;
+	margin: 0px 0px 4px 45px;
+	padding: 0px;
+}
+.msg p { margin: 0px 0px 6px 45px; width: 100% }
+.msg ul { margin: 0px 0px 6px 15px; padding: 0px; }
+.msg li {
+	margin: 0px 0px 2px 45px;
+	/* also undo screen_1 styles */
+	padding-left: 0;
+	list-style-type: disc;
+	background: none;
+}
+.msg a:visited {
+	color: #004B91;
+}
+.msgMini {
+	font-size: 11px;
+	line-height: 140%;
+	border: solid 1px #DDDAC0;
+	position: relative;
+	background-color: #ffffdd;
+	padding: 5px 35px 5px 0px;
+	margin: 10px 0px;
+}
+.msgMini span {
+	left: 6px;
+	top: 7px;
+	width: 17px;
+	height: 17px;
+	display: block;
+	position: absolute;
+	background-image: url(//d36cz9buwru1tt.cloudfront.net/error-sprite-mini.gif);
+	background-repeat: no-repeat;
+}
+.msgMini h6 {
+	font-size: 11px;
+	font-weight: bold;
+	margin: 0px 0px 3px 30px;
+	padding: 0px;
+}
+.msgMini p { margin: 0px 0px 4px 30px; width: 100% }
+.msgMini ul { margin: 0px 0px 4px 15px; padding: 0px; }
+.msgMini li { margin: 0px 0px 2px 30px; }
+.msgSuccess { border-color: #447F00; color: #006633; }
+.msgSuccess span { background-position: 0px -25px; }
+.msgMiniSuccess { color: #006633; }
+.msgMiniSuccess span { background-position: 0px -17px; }
+.msgWarning { border-color: #E47911; }
+.msgWarning span { background-position: 0px -50px; }
+.msgMiniWarning span { background-position: 0px -34px; }
+.msgError { border-color: #A31919; color: #A31919; }
+.msgError span { background-position: 0px -75px; }
+.msgMiniError { color: #A31919; }
+.msgMiniError span { background-position: 0px -51px; }
+
+/* End alert,message,error styles */

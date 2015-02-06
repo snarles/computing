@@ -1,0 +1,39 @@
+.notFound {
+  font-style: italic;
+}
+#yui-main .yui-b .yui-gc #desc {
+  margin-right: 0;
+  width: 450px;
+  padding-right: 30px;
+  border-right: 1px solid #ccc;
+}
+#callToAction {
+  border: 1px solid #EAEAEA;
+  float: right;
+  font-size: 10px;
+  line-height: 14px;
+  margin-left: 0;
+  padding: 14px 20px 0;
+  text-align: center;
+  width: 208px;
+}
+#callToAction img {
+  margin-bottom: 16px;
+}
+#callToAction p {
+  margin-bottom: 3px;
+}
+#callToAction .disclaimer {
+  color: #999;
+}
+#sideNav #subNavB .decoratedBox {
+  margin-bottom: 39px;
+  margin-top: -12px;
+}
+
+#sideNav #subNavA .decoratedBox {
+  margin-bottom: 39px;
+}
+#sideNav #subNavA {
+  margin-bottom: 0;
+}

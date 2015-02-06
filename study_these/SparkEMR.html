@@ -1,0 +1,2206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0048)https://aws.amazon.com/articles/4926593393724923 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="./SparkEMR_files/screen_1.css">
+    <link href="./SparkEMR_files/aws-global-two-col-with-actions._V199442764_.css" rel="stylesheet" type="text/css" \="">
+    
+    
+
+    <link rel="icon" type="image/ico" href="https://media.amazonwebservices.com/favicon.ico">
+    <link rel="shortcut icon" type="image/ico" href="https://media.amazonwebservices.com/favicon.ico">
+
+    <title>Run Spark and Spark SQL on Amazon Elastic MapReduce : Articles &amp; Tutorials : Amazon Web Services</title>
+
+    <link href="./SparkEMR_files/site._V155438102_.css" rel="stylesheet" type="text/css" \="">
+
+    <link rel="stylesheet" type="text/css" href="./SparkEMR_files/awsGlobalNav3.css">
+
+    <!--[if lt IE 9]>
+      <link rel="stylesheet"
+            type="text/css"
+            href="//l0.awsstatic.com/css/awsGlobalNav3-ltIE9.css">
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+      <link rel="stylesheet"
+            type="text/css"
+            href="//l0.awsstatic.com/css/awsGlobalNav3-ltIE8.css">
+    <![endif]-->
+
+    <!--[if lt IE 7]>
+      <link rel="stylesheet"
+            type="text/css"
+            href="//l0.awsstatic.com/css/awsGlobalNav3-ltIE7.css">
+    <![endif]-->
+
+    <script type="text/javascript" src="./SparkEMR_files/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="./SparkEMR_files/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="./SparkEMR_files/jquery.jsonp-1.1.4.min.js"></script>
+    <script type="text/javascript" src="./SparkEMR_files/awsGlobalNav3.js"></script>
+    
+<script type="text/javascript">
+  __amznUtmPage = '/catalog?_encoding=UTF8&catalogItemId=4926593393724923&keyword=articles';
+</script>
+
+<script src="./SparkEMR_files/amznUrchin.js" type="text/javascript"></script><script type="text/javascript" src="./SparkEMR_files/urchin.js"></script>
+
+        <script type="text/javascript">
+      $.extend(AWSGlobalNav, {
+          contentBaseURL:  "//l0.awsstatic.com/",
+          disableLanguageMenu: true
+      });
+    </script>
+
+    <link href="./SparkEMR_files/items._V165382505_.css" rel="stylesheet" type="text/css" \="">
+    <link href="./SparkEMR_files/search-faceting._V155438102_.css" rel="stylesheet" type="text/css" \="">
+
+  </head>
+  <body id="top" class="yui-skin-sam">
+    <!-- SiteCatalyst code version: H.25.1.
+Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com -->
+<script language="JavaScript" type="text/javascript" src="./SparkEMR_files/s_code.min.js"></script>
+<script language="JavaScript" type="text/javascript"><!--
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)//--></script>
+<script language="JavaScript" type="text/javascript"><!--
+if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+//--></script><noscript>&lt;img src="//amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.1--NS/0"
+height="1" width="1" border="0" alt="" /&gt;</noscript><!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.25.1. -->
+
+
+    <div id="doc4">
+      <div id="hd">
+        
+
+
+
+
+
+
+  <!-- header -->
+<div id="main-nav" class="nav-lang-en">
+  <a href="https://aws.amazon.com/" id="nav-aws-logo" class="nav-sprite" title="Amazon Web Services"><span>Amazon Web Services</span></a>
+
+  <div id="nav-bar" class="nav-sprite">
+    <a id="nav-dd-products-solutions" class="nav-link ddfo-btn" href="https://aws.amazon.com/products-solutions/">
+      <strong>AWS Products</strong> &amp; <strong>Solutions</strong>
+    <div class="nav-down-arrow nav-sprite"></div></a>
+
+    <form id="nav-search-form" method="get" action="https://aws.amazon.com/search">
+      <div id="nav-searchfield-outer" class="nav-sprite">
+        <div id="nav-searchfield-inner" class="nav-sprite">
+          <div id="nav-searchfield-width" style="padding-right: 130px;">
+            <input id="nav-searchfield" type="text" name="searchQuery">
+          </div>
+        </div>
+      </div>
+
+      <span id="nav-search-in" class="nav-sprite">
+        <span id="nav-search-in-content">Articles &amp; Tutorials</span>
+        <span class="nav-down-arrow nav-sprite"></span>
+        <select name="searchPath" id="nav-search-dropdown"><option value="all">Entire Site</option><option value="AWSMarketplace">AMIs from AWS Marketplace</option><option value="articles">Articles &amp; Tutorials</option><option value="products_and_info">AWS Product Information</option><option value="case_studies">Case Studies</option><option value="customerapps">Customer Apps</option><option value="developertools">Developer Tools</option><option value="documentation">Documentation</option><option value="datasets">Public Data Sets</option><option value="releasenotes">Release Notes</option><option value="solution_providers">Partners</option><option value="code">Sample Code &amp; Libraries</option></select>
+      </span>
+
+      <div id="nav-search-button" class="nav-sprite">
+        <input type="image" alt="Search" id="nav-search-button-inner" title="Search" src="./SparkEMR_files/transparent_pixel.gif">
+      </div>
+    </form>
+
+    <a id="nav-dd-developers" class="nav-link ddfo-btn" href="https://aws.amazon.com/developers/">
+      <strong>Developers</strong>
+    <div class="nav-down-arrow nav-sprite"></div></a>
+
+    <a id="nav-dd-support" class="nav-link ddfo-btn" href="https://aws.amazon.com/support/">
+      <strong>Support</strong>
+    <div class="nav-down-arrow nav-sprite"></div></a>
+  <div class="ddfo">
+  <div class="ddfo-l1">
+  <ul>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/console/">AWS Management Console</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/documentation/">Documentation</a></li>
+
+    <li class="ddfo-l1-li-title">SDKs &amp; Tools</li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/developers/getting-started/">Get Started</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/tools/">Downloads</a></li>
+
+    <li class="ddfo-l1-li-title">Platforms</li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/java/">Java</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/javascript/">JavaScript</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/mobile/">Mobile</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/php/">PHP</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/ruby/">Ruby</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/python/">Python</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/net/">Windows &amp; .NET</a></li>
+
+    <li class="ddfo-l1-li-title">Resources</li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/forums">Forums</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/articles/">Tutorials &amp; Articles</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/ref=mkt_ste_dev_resources_nav">AWS Marketplace</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/whitepapers/">Whitepapers</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/training/">Training &amp; Certification</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/usergroups/">AWS User Groups</a></li>
+</ul>
+</div>
+</div><div class="ddfo">
+  <div class="ddfo-l1">
+  <ul>
+    <li id="ddfo-cat-prodsol-0" class="ddfo-cat-li">AWS &amp; Cloud Computing</li>
+  </ul>
+
+  <ul class="ddfo-ul-divider-above">
+    <li id="ddfo-cat-prodsol-1" class="ddfo-cat-li">Compute</li>
+    <li id="ddfo-cat-prodsol-2" class="ddfo-cat-li">Networking</li>
+    <li id="ddfo-cat-prodsol-3" class="ddfo-cat-li">Storage &amp; Content Delivery</li>
+    <li id="ddfo-cat-prodsol-4" class="ddfo-cat-li">Databases</li>
+    <li id="ddfo-cat-prodsol-5" class="ddfo-cat-li">Analytics</li>
+    <li id="ddfo-cat-prodsol-6" class="ddfo-cat-li">App Services</li>
+    <li id="ddfo-cat-prodsol-7" class="ddfo-cat-li">Deployment &amp; Management</li>
+    <li id="ddfo-cat-prodsol-8" class="ddfo-cat-li">Mobile Services</li>
+    <li id="ddfo-cat-prodsol-9" class="ddfo-cat-li">Applications</li>
+    <li id="ddfo-cat-prodsol-10" class="ddfo-cat-li">AWS Marketplace Software</li>
+  </ul>
+
+  <ul class="ddfo-ul-divider-above">
+    <li id="ddfo-cat-prodsol-11" class="ddfo-cat-li">Start-ups</li>
+    <li id="ddfo-cat-prodsol-12" class="ddfo-cat-li">Enterprises</li>
+    <li id="ddfo-cat-prodsol-13" class="ddfo-cat-li">Partners</li>
+    <li id="ddfo-cat-prodsol-14" class="ddfo-cat-li">Government &amp; Education</li>
+  </ul>
+
+  <ul class="ddfo-ul-divider-above">
+    <li id="ddfo-cat-prodsol-15" class="ddfo-cat-li">Websites &amp; Web Apps</li>
+    <li id="ddfo-cat-prodsol-16" class="ddfo-cat-li">Backup, Storage, &amp; Archive</li>
+    <li id="ddfo-cat-prodsol-17" class="ddfo-cat-li">Big Data &amp; HPC</li>
+    <li id="ddfo-cat-prodsol-18" class="ddfo-cat-li">Gaming</li>
+    <li id="ddfo-cat-prodsol-19" class="ddfo-cat-li">Digital Media</li>
+  </ul>
+</div>
+<div class="ddfo-l2-container">
+  <div id="ddfo-cat-prodsol-0-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">AWS &amp; Cloud Computing</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/what-is-cloud-computing/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/what-is-cloud-computing/?nc1=h_l2_cc&#39;);">
+            <strong>What is Cloud Computing?</strong>
+            <div class="ddfo-sub-title">Learn more about Cloud Computing with AWS</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/choosing-a-cloud-platform/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/choosing-a-cloud-platform/?nc1=h_l2_cc&#39;);">
+            <strong>Choosing a Cloud Platform</strong>
+            <div class="ddfo-sub-title">Cloud Platform Evaluation Checklist</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/getting-started/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/getting-started/?nc1=h_l2_cc&#39;);">
+            <strong>Getting Started</strong>
+            <div class="ddfo-sub-title">Learn how to start using AWS in under 15 minutes</div>
+           </a>
+         </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/about-aws/globalinfrastructure/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/about-aws/globalinfrastructure/?nc1=h_l2_cc&#39;);">
+            <strong>Global Infrastructure</strong>
+            <div class="ddfo-sub-title">Find AWS Regions and Edge Locations around the world</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/economics/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/economics/?nc1=h_l2_cc&#39;);">
+            <strong>Economics Center</strong>
+            <div class="ddfo-sub-title">Learn more about AWS TCO benefits and pricing</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/solutions/case-studies/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/solutions/case-studies/?nc1=h_l2_cc&#39;);">
+            <strong>Customer Success Stories</strong>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/about-aws/whats-new/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/about-aws/whats-new/?nc1=h_l2_cc&#39;);">
+            <strong>What’s New</strong>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/about-aws/media-coverage/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/about-aws/media-coverage/?nc1=h_l2_cc&#39;);">
+            <strong>Media Coverage</strong>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/resources/analyst-reports/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/analyst-reports/?nc1=h_l2_cc&#39;);">
+            <strong>Analyst Reports</strong>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/about-aws/events/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/about-aws/events/?nc1=h_l2_cc&#39;);">
+            <strong>Events</strong>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/resources/webinars/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/resources/webinars/?nc1=h_l2_cc&#39;);" target="_blank"><strong>Videos</strong></a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/blogs/aws/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/blogs/aws/?nc1=h_l2_cc&#39;);">
+            <strong>AWS Blog</strong>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/premiumsupport/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/premiumsupport/?nc1=h_l2_cc&#39;);">
+            <strong>AWS Support</strong>
+            <div class="ddfo-sub-title">Technical support available 24x7 by AWS engineers</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/whitepapers/?nc1=h_l2_cc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/whitepapers/?nc1=h_l2_cc&#39;);">
+            <strong>Whitepapers</strong>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="ddfo-l2-promo-stack promo-stack-nopad">
+      <a href="https://aws.amazon.com/economics/" class="navpromo-boxLink" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/economics/&#39;);"><div style="padding:20px 12px;"><span class="promo-sub-title txt-green">Economics</span>
+          <p>Find calculators and other tools to help you lower costs with the AWS Cloud.</p><span class="txt-linkText small-link">Learn more »</span></div></a>
+
+      <a href="https://aws.amazon.com/security/" class="navpromo-boxLink" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/security/&#39;);"><div style="padding:20px 12px;"><span class="promo-sub-title txt-red">Security</span>
+      <p>Learn about AWS Cloud security and how to build secure applications.</p><span class="txt-linkText small-link">Learn more&nbsp;»</span></div></a>
+      
+      <a href="https://aws.amazon.com/architecture/" class="navpromo-boxLink" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/architecture/&#39;);"><div style="border-bottom: 0;padding:20px 12px;"><span class="promo-sub-title txt-blue">Architecture</span>
+      <p>Learn how to build scalable and reliable applications in the AWS Cloud.</p><span class="txt-linkText small-link">Learn more&nbsp;»</span></div></a>
+
+    </div>
+
+  </div>
+
+  <div id="ddfo-cat-prodsol-1-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Compute</li>
+        <li>
+          <a href="https://aws.amazon.com/ec2/?nc1=h_l2_c" class="ddfo-a-block" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/ec2/?nc1=h_l2_c&#39;);">
+            <strong>Amazon EC2</strong>
+            <div class="ddfo-sub-title">Virtual Servers in the Cloud</div>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/autoscaling/?nc1=h_l2_c" class="ddfo-a-block" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/autoscaling/?nc1=h_l2_c&#39;);">
+            <strong>Auto Scaling</strong>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/vpc/?nc1=h_l2_c" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/vpc/?nc1=h_l2_c&#39;);">
+            <strong>Amazon VPC</strong>
+            <div class="ddfo-sub-title">
+              Isolated Cloud Resources
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/elasticloadbalancing/?nc1=h_l2_c" class="ddfo-a-block" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/elasticloadbalancing/?nc1=h_l2_c&#39;);">
+            <strong>Elastic Load Balancing</strong>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/&#39;);"><strong>AWS Marketplace »</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00A6KUVBW/ref=mkt_ste_l2_ec2_f1?nc1=h_l2_c" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00A6KUVBW/ref=mkt_ste_l2_ec2_f1?nc1=h_l2_c&#39;);"><strong>CentOS 6 </strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00B527JQ0/ref=mkt_ste_l2_ec2_f2?nc1=h_l2_c" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00B527JQ0/ref=mkt_ste_l2_ec2_f2?nc1=h_l2_c&#39;);"><strong>Jaspersoft Reporting and Analytics for AWS (Hourly)</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00BF5GBVQ/ref=mkt_ste_l2_ec2_f3?nc1=h_l2_c" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00BF5GBVQ/ref=mkt_ste_l2_ec2_f3?nc1=h_l2_c&#39;);"><strong>Zend Server Professional Edition PHP 5.4</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/ref=mkt_ste_l2_ec2_Category?nc1=h_l2_c" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/ref=mkt_ste_l2_ec2_Category?nc1=h_l2_c&#39;);"><strong>View All Related Products (1600+)&nbsp;»</strong></a>
+        </li>
+      </ul>
+    </div>
+    
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/1/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+
+      <div class="promo-box">
+      <span class="button promo-button">Get Started Now&nbsp;»</span>
+      <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+      <p>
+        <b>750 hours</b> of Amazon EC2 running Linux or Windows Micro Instances each month for one year.<br><br>
+        <span class="txt-linkText small-link">AWS Free Tier Details »</span>
+      </p>
+      </div>
+    </div>
+    </a>
+    
+  </div>
+
+  <div id="ddfo-cat-prodsol-2-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Networking</li>
+        <li>
+          <a href="https://aws.amazon.com/vpc/?nc1=h_l2_n" class="ddfo-a-block" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/ec2/?nc1=h_l2_n&#39;);">
+            <strong>Amazon VPC</strong>
+            <div class="ddfo-sub-title">Isolated Cloud Resources</div>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/directconnect/?nc1=h_l2_n" class="ddfo-a-block" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/directconnect/?nc1=h_l2_n&#39;);">
+            <strong>AWS Direct Connect</strong>
+            <div class="ddfo-sub-title">Dedicated Network Connection to AWS</div>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/directconnect/?nc1=h_l2_n" class="ddfo-a-block" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/directconnect/?nc1=h_l2_n&#39;);">
+            <strong>AWS Direct Connect</strong>
+            <div class="ddfo-sub-title">Dedicated Network Connection to AWS</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/route53/?nc1=h_l2_n" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/route53/?nc1=h_l2_n&#39;);">
+            <strong>Amazon Route 53</strong>
+            <div class="ddfo-sub-title">
+              Scalable Domain Name System (DNS)
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/elasticloadbalancing/?nc1=h_l2_n" class="ddfo-a-block" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/elasticloadbalancing/?nc1=h_l2_n&#39;);">
+            <strong>Elastic Load Balancing</strong>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace?nc1=h_l2_n" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/?nc1=h_l2_n&#39;);"><strong>AWS Marketplace »</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00DJDRZB2/ref=mkt_ste_l2_nw_f1?nc1=h_l2_n" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00DJDRZB2/ref=mkt_ste_l2_nw_f1?nc1=h_l2_n&#39;);"><strong>Sophos UTM 9</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B009I5TLOE/ref=mkt_ste_l2_nw_f2?nc1=h_l2_n" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B009I5TLOE/ref=mkt_ste_l2_nw_f2?nc1=h_l2_n&#39;);"><strong>Vyatta Virtual Router/Firewall/VPN</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00A9ZLKFK/ref=mkt_ste_l2_nw_f3?nc1=h_l2_n" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00A9ZLKFK/ref=mkt_ste_l2_nw_f3?nc1=h_l2_n&#39;);"><strong>NetScaler VPX Platinum Edition - 10 Mbps</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/b/2649366011/ref=mkt_ste_l2_nw_Category?nc1=h_l2_n" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/b/2649366011/ref=mkt_ste_l2_nw_Category?nc1=h_l2_n&#39;);"><strong>View All Related Products (175+)&nbsp;»</strong></a>
+        </li>
+      </ul>
+    </div>
+    
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/2/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+
+      <div class="promo-box">
+      <span class="button promo-button">Get Started Now »</span>
+      <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+      <p>
+        <b>750 hours</b> of Amazon EC2 running Linux or Windows Micro Instances each month for one year.<br><br>
+        <span class="txt-linkText small-link">AWS Free Tier Details »</span>
+      </p>
+      </div>
+    </div>
+    </a>
+    
+  </div>
+
+  <div id="ddfo-cat-prodsol-3-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Storage &amp; Content Delivery</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/s3/?nc1=h_l2_sc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/s3/?nc1=h_l2_sc&#39;);">
+            <strong>Amazon S3</strong>
+            <div class="ddfo-sub-title">Scalable Storage in the Cloud</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/glacier/?nc1=h_l2_sc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/glacier/?nc1=h_l2_sc&#39;);">
+            <strong>Amazon Glacier</strong>
+            <div class="ddfo-sub-title">Low-Cost Archive Storage in the Cloud</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/ebs/?nc1=h_l2_sc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/ebs/?nc1=h_l2_sc&#39;);">
+            <strong>Amazon EBS</strong>
+            <div class="ddfo-sub-title">EC2 Block Storage Volumes</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/storagegateway/?nc1=h_l2_sc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/storagegateway/?nc1=h_l2_sc&#39;);">
+            <strong>AWS Storage Gateway</strong>
+            <div class="ddfo-sub-title">Integrates on-premises IT environments with Cloud storage</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/cloudfront/?nc1=h_l2_sc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/cloudfront/?nc1=h_l2_sc&#39;);">
+            <strong>Amazon CloudFront</strong>
+            <div class="ddfo-sub-title">Global Content Delivery Network (CDN)</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/importexport/?nc1=h_l2_sc" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/importexport/?nc1=h_l2_sc&#39;);">
+            <strong>AWS Import/Export</strong>
+            <div class="ddfo-sub-title"> Large Volume Data Transfer </div>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/&#39;);">
+            <strong>AWS Marketplace »</strong>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00IPTQDI6/ref=mkt_ste_l2_s3cdn_f1?nc1=h_l2_n" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00IPTQDI6/ref=mkt_ste_l2_s3cdn_f1?nc1=h_l2_n&#39;);">
+            <strong>Wowza Streaming Engine 4: Standard</strong>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00IGJMIOI/ref=mkt_ste_l2_s3cdn_f2?nc1=h_l2_n" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00IGJMIOI/ref=mkt_ste_l2_s3cdn_f2?nc1=h_l2_n&#39;);">
+            <strong>Adobe Media Server 5 Extended</strong>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00EQE493U/ref=mkt_ste_l2_s3cdn_f3?nc1=h_l2_n" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00EQE493U/ref=mkt_ste_l2_s3cdn_f3?nc1=h_l2_n&#39;);">
+            <strong>SoftNAS Cloud</strong>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/b/2649337011/ref=mkt_ste_l2_S3CDN?page=1&category=2649337011&nc1=h_l2_n" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/b/2649337011/ref=mkt_ste_l2_S3CDN?page=1&amp;category=2649337011&amp;nc1=h_l2_n&#39;);"><strong>View All Related Products (90+)&nbsp;»</strong></a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/3/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+
+      <div class="promo-box">
+        <span class="button promo-button">Get Started Now »</span>
+        <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+        <p>
+          <b>5 GB</b> of Amazon S3 standard storage and <b>30 GB</b> of Amazon EBS Storage for one year.<br><br>
+         <strong>50 GB</strong> Data Transfer Out and <strong>2,000,000 HTTP and HTTPS Requests</strong> for Amazon CloudFront for one year<br><br>
+          <span class="small-link txt-linkText">AWS Free Tier Details »</span>
+        </p>
+      </div>
+    </div>
+    </a>
+    
+  </div>
+
+  <div id="ddfo-cat-prodsol-4-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Databases</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/rds/?nc1=h_l2_db" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/rds/?nc1=h_l2_db&#39;);">
+            <strong>Amazon RDS</strong>
+            <div class="ddfo-sub-title">Managed Relational Database Service for MySQL, Oracle, SQL Server, and PostgreSQL</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/dynamodb/?nc1=h_l2_db" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/dynamodb/?nc1=h_l2_db&#39;);">
+            <strong>Amazon DynamoDB</strong>
+            <div class="ddfo-sub-title">Fast, Predictable, Highly-scalable NoSQL data store</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/redshift/?nc1=h_l2_db" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/redshift/?nc1=h_l2_db&#39;);">
+            <strong>Amazon Redshift</strong>
+            <div class="ddfo-sub-title">Fast, Powerful, Fully Managed, Petabyte-scale Data Warehouse Service</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/elasticache/?nc1=h_l2_db" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/elasticache/?nc1=h_l2_db&#39;);">
+            <strong>Amazon ElastiCache</strong>
+            <div class="ddfo-sub-title"> In-Memory Caching Service </div>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/&#39;);"><strong>AWS Marketplace »</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B008DWS6GC/ref=mkt_ste_l2_db_f1?nc1=h_l2_db" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B008DWS6GC/ref=mkt_ste_l2_db_f1?nc1=h_l2_db&#39;);"><strong>MONyog - RDS MySQL Monitor and Advisor</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B009KA3CRY/ref=mkt_ste_l2_db_f2?nc1=h_l2_db" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B009KA3CRY/ref=mkt_ste_l2_db_f2?nc1=h_l2_db&#39;);"><strong>SAP HANA One</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00909GAR4/ref=mkt_ste_l2_db_f3?nc1=h_l2_db" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00909GAR4/ref=mkt_ste_l2_db_f3?nc1=h_l2_db&#39;);"><strong>ScaleArc iDB Enterprise for MySQL</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_database_category?page=1&category=2649364011&nc1=h_l2_db" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/search/results/ref=mkt_ste_l2_database_category?page=1&amp;category=2649364011&amp;nc1=h_l2_db&#39;);"><strong>View All Related Products (90+)&nbsp;»</strong></a>
+        </li>
+      </ul>
+    </div>
+    
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/4/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+
+      <div class="promo-box">
+        <span class="button promo-button">Get Started Now »</span>
+        <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+        <p>
+          <strong>20 GB</strong> of storage for Amazon RDS (MySQL, Oracle,MS SQL Server*, and PostgreSQL)<br><br>
+          <strong>100 MB</strong> of storage, <strong>5 units</strong> of write capacity, and <br><strong>10 units</strong> of read capacity for Amazon DynamoDB.<br><br>
+          <span class="small-link txt-linkText">AWS Free Tier Details »</span>
+        </p>
+        <div style="font-size: 11px; line-height: 12px; color: #aaa;">*licenses for Oracle and Microsoft SQL Server software required</div>
+      </div>
+    </div>
+    </a>
+    
+  </div>
+
+  <div id="ddfo-cat-prodsol-5-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Analytics</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/kinesis/?nc1=h_l2_al" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/kinesis/?nc1=h_l2_al&#39;);">
+            <strong>Amazon Kinesis</strong>
+            <div class="ddfo-sub-title"> Real-Time Data Stream Processing </div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/redshift/?nc1=h_l2_al" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/redshift/?nc1=h_l2_al&#39;);">
+            <strong>Amazon Redshift</strong>
+            <div class="ddfo-sub-title"> Fast, Powerful, Fully Managed, Petabyte-scale Data Warehouse Service </div>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/elasticmapreduce/?nc1=h_l2_al" class="ddfo-a-block" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/elasticmapreduce/?nc1=h_l2_al&#39;);">
+            <strong>Amazon EMR</strong>
+            <div class="ddfo-sub-title"> Hosted Hadoop Framework </div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/datapipeline/?nc1=h_l2_al" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/datapipeline/?nc1=h_l2_al&#39;);">
+            <strong>AWS Data Pipeline</strong>
+            <div class="ddfo-sub-title"> Orchestration Service for Periodic, Data-Driven Workflows </div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/mobileanalytics/?nc1=h_l2_al" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/mobileanalytics/?nc1=h_l2_al&#39;);">
+            <strong>Amazon Mobile Analytics</strong>
+            <div class="ddfo-sub-title"> Fast, secure app usage analytics </div>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/&#39;);"><strong>AWS Marketplace »</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00B527JQ0/ref=mkt_ste_l2_analytics_f1?nc1=h_l2_al" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00B527JQ0/ref=mkt_ste_l2_analytics_f1?nc1=h_l2_al&#39;);"><strong>Jaspersoft Reporting and Analytics for AWS (Hourly)</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B009KA3CRY/ref=mkt_ste_l2_analytics_f2?nc1=h_l2_al" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B009KA3CRY/ref=mkt_ste_l2_analytics_f2?nc1=h_l2_al&#39;);"><strong>SAP HANA One</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00IO6H6KE/ref=mkt_ste_l2_analytics_f3?nc1=h_l2_al" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00IO6H6KE/ref=mkt_ste_l2_analytics_f3?nc1=h_l2_al&#39;);">
+            <strong>Revolution R Enterprise 7 </strong>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_analytics_category?page=1&searchTerms=analytics&nc1=h_l2_al" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/search/results/ref=mkt_ste_l2_analytics_category?page=1&amp;searchTerms=analytics&amp;nc1=h_l2_al&#39;);"><strong>View All Related Products (175+)&nbsp;»</strong></a>
+        </li>
+      </ul>
+    </div>
+    
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/5/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+
+      <div class="promo-box">
+        <span class="button promo-button">Get Started Now »</span>
+        <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+        <p>
+          <strong>750 hours</strong> of Amazon EC2 running Linux or Windows Micro Instances each month for one year.<br><br>
+          <span class="small-link txt-linkText">AWS Free Tier Details »</span>
+        </p>
+      </div>
+    </div>
+    </a>
+    
+  </div>
+
+  <div id="ddfo-cat-prodsol-6-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">App Services</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/cloudsearch/?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/cloudsearch/?nc1=h_l2_as&#39;);">
+            <strong>Amazon CloudSearch</strong>
+            <div class="ddfo-sub-title">Managed Search Service</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/appstream/?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/appstream/?nc1=h_l2_as&#39;);">
+            <strong>Amazon AppStream</strong>
+            <div class="ddfo-sub-title">Low-Latency Application Streaming</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/ses/?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/ses/?nc1=h_l2_as&#39;);">
+            <strong>Amazon SES</strong>
+            <div class="ddfo-sub-title">Email Sending Service</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/sqs/?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/sqs/?nc1=h_l2_as&#39;);">
+            <strong>Amazon SQS</strong>
+            <div class="ddfo-sub-title">Message Queue Service</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/sns/?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/sns/?nc1=h_l2_as&#39;);">
+            <strong>Amazon SNS</strong>
+            <div class="ddfo-sub-title">Push Notification Service</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/swf/?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/swf/?nc1=h_l2_as&#39;);">
+            <strong>Amazon SWF</strong>
+            <div class="ddfo-sub-title">Workflow service for coordinating application components</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/fps/?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/fps/?nc1=h_l2_as&#39;);">
+            <strong>Amazon FPS</strong>
+            <div class="ddfo-sub-title">API based payment service</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/elastictranscoder/?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/elastictranscoder/?nc1=h_l2_as&#39;);">
+            <strong>Amazon Elastic Transcoder</strong>
+            <div class="ddfo-sub-title">Easy-to-use scalable media transcoding</div>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/&#39;);"><strong>AWS Marketplace »</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00KXA6KAQ/ref=mkt_ste_l2_app_services_f1?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00KXA6KAQ/ref=mkt_ste_l2_app_services_f1?nc1=h_l2_as&#39;);"><strong>Adobe ColdFusion 11</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00DIF4A6Y/ref=mkt_ste_l2_app_services_f2?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/pp/B00DIF4A6Y/ref=mkt_ste_l2_app_services_f2?nc1=h_l2_as&#39;);"><strong>Nginx</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00A9ZLKFK/ref=mkt_ste_l2_app_services_f3?nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00A9ZLKFK/ref=mkt_ste_l2_app_services_f3?nc1=h_l2_as&#39;);"><strong>Citrix Netscaler</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/search/ref=mkt_ste_l2_app_svcs?page=2&searchTerms=Application+services&nc1=h_l2_as" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/search/ref=mkt_ste_l2_app_svcs?page=2&amp;searchTerms=Application+services&amp;nc1=h_l2_as&#39;);"><strong>View All Related Products (340+)&nbsp;»</strong></a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/6/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+      <div class="promo-box">
+        <span class="button promo-button">Get Started Now »</span>
+        <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+        <p>
+          <b>100,000 requests</b> and <b>100,000 HTTP notifications</b> for Amazon SNS and <b>100,000</b> Amazon SQS requests each month for one year.<br><br>
+          <span class="small-link txt-linkText">AWS Free Tier Details »</span>
+        </p>
+      </div>
+    </div>
+    </a>
+    
+  </div>
+
+  <div id="ddfo-cat-prodsol-7-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Deployment &amp; Management</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/elasticbeanstalk/?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/elasticbeanstalk/?nc1=h_l2_dm&#39;);">
+            <strong>AWS Elastic Beanstalk</strong>
+            <div class="ddfo-sub-title">AWS Application Container</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/opsworks/?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/opsworks/?nc1=h_l2_dm&#39;);">
+            <strong>AWS OpsWorks</strong>
+            <div class="ddfo-sub-title">DevOps Application Management Services</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/cloudformation/?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/cloudformation/?nc1=h_l2_dm&#39;);">
+            <strong>AWS CloudFormation</strong>
+            <div class="ddfo-sub-title">Templates for AWS Resource Creation</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/cloudtrail/?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/cloudtrail/?nc1=h_l2_dm&#39;);">
+            <strong>AWS CloudTrail</strong>
+            <div class="ddfo-sub-title">User Activity and Change Tracking</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/cloudwatch/?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/cloudwatch/?nc1=h_l2_dm&#39;);">
+            <strong>Amazon CloudWatch</strong>
+            <div class="ddfo-sub-title">Resource and Application Monitoring</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/iam/?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/iam/?nc1=h_l2_dm&#39;);">
+            <strong>AWS Identity and Access Management (IAM)</strong>
+            <div class="ddfo-sub-title">Configurable AWS Access Controls</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/cloudhsm/?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/cloudhsm/?nc1=h_l2_dm&#39;);">
+            <strong>AWS CloudHSM</strong>
+            <div class="ddfo-sub-title">Hardware-based Key Storage for Regulatory Compliance</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/console/?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/console/?nc1=h_l2_dm&#39;);">
+            <strong>AWS Management Console</strong>
+            <div class="ddfo-sub-title">Web-Based User Interface</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/cli/?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/cli/?nc1=h_l2_dm&#39;);">
+            <strong>AWS Command Line Interface&nbsp;</strong>
+            <div class="ddfo-sub-title">Unified tool to manage AWS services</div>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/&#39;);"><strong>AWS Marketplace »</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00J5RHYEO/ref=mkt_ste_l2_Deployment_f1?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00J5RHYEO/ref=mkt_ste_l2_Deployment_f1?nc1=h_l2_dm&#39;);"><strong>Advanced Redmine on Ubuntu powered by Mbridge</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00E8PL4JO/ref=mkt_ste_l2_Deployment_f2?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00E8PL4JO/ref=mkt_ste_l2_Deployment_f2?nc1=h_l2_dm&#39;);"><strong>Trac by TurnKey Linux</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/b/2649274011/ref=mkt_ste_l2_Deployment_cat?nc1=h_l2_dm" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/b/2649274011/ref=mkt_ste_l2_Deployment_cat?nc1=h_l2_dm&#39;);"><strong>View All Related Products (180+)&nbsp;»</strong></a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/7/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+      
+      <div class="promo-box">
+        <span class="button promo-button">Get Started Now »</span>
+        <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+        <p>
+          <b>10 metrics</b>, <b>10 alarms</b>, <b>1M API requests</b> for Amazon CloudWatch each month for one year.<br><br>
+          <span class="small-link txt-linkText">AWS Free Tier Details »</span>
+        </p>
+      </div>
+    </div>
+    </a>
+    
+  </div>
+
+  <div id="ddfo-cat-prodsol-8-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">
+          <a class="ddfo-title-link" href="https://aws.amazon.com/mobile/?nc1=h_l2_ms" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/mobile/?nc1=h_l2_ms&#39;);">Mobile Services&nbsp;»</a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/cognito/?nc1=h_l2_ms" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/cognito/?nc1=h_l2_ms&#39;);">
+            <strong>Amazon Cognito</strong>
+            <div class="ddfo-sub-title">User identity and data synchronization</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/mobileanalytics/?nc1=h_l2_ms" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/mobileanalytics/?nc1=h_l2_ms&#39;);">
+            <strong>Amazon Mobile Analytics</strong>
+            <div class="ddfo-sub-title">Fast, secure app usage analytics</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/sns/?nc1=h_l2_ms" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/sns/?nc1=h_l2_ms&#39;);">
+            <strong>Amazon SNS</strong>
+            <div class="ddfo-sub-title">Send notifications, updates, and promotions across platforms</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/mobile/sdk/?nc1=h_l2_ms" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/mobile/sdk/?nc1=h_l2_ms&#39;);">
+            <strong>AWS Mobile SDK</strong>
+            <div class="ddfo-sub-title">Build high quality mobile apps quickly and easily</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/8/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+      <div class="promo-box">
+        <span class="button promo-button">Get Started Now »</span>
+        <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+        <p>
+          <b>1,000,000 publishes</b>, <b>1,000,000 mobile push deliveries</b>, <b>100,000 http/s deliveries</b>, and <b>1,000 email deliveries</b> with Amazon SNS.<br><br>
+          <span class="small-link hlp-linkText">AWS Free Tier Details »</span>
+        </p>
+      </div>
+    </div>
+    </a>
+
+  </div>
+
+  <div id="ddfo-cat-prodsol-9-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Applications</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/workspaces/?nc1=h_l2_ap" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/workspaces/?nc1=h_l2_ap&#39;);">
+            <strong>Amazon WorkSpaces</strong>
+            <div class="ddfo-sub-title">Virtual Desktops in the Cloud</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/zocalo/?nc1=h_l2_ap" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/workspaces/?nc1=h_l2_ap&#39;);">
+            <strong>Amazon Zocalo</strong>
+            <div class="ddfo-sub-title">Secure enterprise document storage and sharing</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/9/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+      <div class="promo-box">
+        <span class="button promo-button">Get Started Now »</span>
+        <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+        <p>
+          <b>750 hours</b> of Amazon EC2 running Linux or Windows Micro Instances each month for one year.<br><br>
+          <span class="txt-linkText small-link">AWS Free Tier Details »</span>
+        </p>
+      </div>
+    </div>
+    </a>
+    
+  </div>
+
+  <div id="ddfo-cat-prodsol-10-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <a href="https://aws.amazon.com/marketplace/ref=mkt_ste_l2_mp_logo?nc1=h_l2_mp"><img src="./SparkEMR_files/logo-mp-nav.png" alt="AWS Marketplace" style="display:block;"></a>
+      <span style="font-size:12px;line-height:16px;display:block;margin-top:4px;">Partner software pre-configured to run on AWS</span>
+      <ul style="margin-top:20px;">
+        <li>
+          <a class="ddfo-a-block mp-heading" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_infra_sw_all/?page=1&category=2649276011&nc1=h_l2_mp">Infrastructure Software (1120+)</a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_app_stacks/?page=1&category=2649362011&nc1=h_l2_mp">
+            <strong>Application Stacks</strong>
+          </a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_op_sys/?page=1&category=2649367011&nc1=h_l2_mp">
+            <strong>Operating Systems</strong>
+          </a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_db/?page=1&category=2649364011&nc1=h_l2_mp">
+            <strong>Databases &amp; Caching</strong>
+          </a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_ntwk_infra/?page=1&category=2649366011&nc1=h_l2_mp">
+            <strong>Network Infrastructure</strong>
+          </a>
+        </li>
+        <li>&nbsp;</li>
+        <li>
+          <a class="ddfo-a-block mp-heading" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_biz_sw_all/?page=1&category=2649275011&nc1=h_l2_mp">Business Software (730+)</a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_biz_intel/?page=1&category=2649336011&nc1=h_l2_mp">
+            <strong>Business Intelligence</strong>
+          </a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_collab/?page=1&category=5018785011&nc1=h_l2_mp">
+            <strong>Collaboration</strong>
+          </a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_ctnt_mgmt/?page=1&category=2649338011&nc1=h_l2_mp">
+            <strong>Content Management</strong>
+          </a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_crm/?page=1&category=2649339011&nc1=h_l2_mp">
+            <strong>CRM</strong>
+          </a>
+        </li>
+        <li>&nbsp;</li>
+        <li>
+          <a class="ddfo-a-block mp-heading" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_dev_tools_all/?page=1&category=2649274011&nc1=h_l2_mp">Developer Tools (200+)</a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_bug_trk/?page=1&category=2649281011&nc1=h_l2_mp">
+            <strong>Issue &amp; Bug Tracking</strong>
+          </a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_monitoring/?page=1&category=2649280011&nc1=h_l2_mp">
+            <strong>Monitoring</strong>
+          </a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_source_ctrl/?page=1&category=2649282011&nc1=h_l2_mp">
+            <strong>Source Control</strong>
+          </a>
+        </li>
+        <li style="line-height:11px;">
+          <a class="ddfo-a-block" href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_mp_testing/?page=1&category=2649283011&nc1=h_l2_mp">
+            <strong>Testing</strong>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+      <div class="ddfo-l2-promo-stack promo-stack-nopad">
+        <div class="promo-stack-header" style="text-align:center;font-size:11px;padding:6px;color:#b3b3b3;">FEATURED SOFTWARE</div>
+        <a href="https://aws.amazon.com/marketplace/pp/B00A9ZWU0Y/ref=mkt_ste_l2_mpL3Promo1/?nc1=h_l2_mp" class="navpromo-boxLink"><div style="padding:20px 12px;text-align:center;"><img src="./SparkEMR_files/logo-citrix-mp-nav5.png" alt="Citrix" style="margin-bottom:10px;"><br><span style="font-size:12px;font-weight:bold;">Citrix NetScaler VPX Platinum</span>
+            <p style="font-size:10px;line-height:12px;text-align:center;margin:0;">Gartner Magic Quadrant Leader in Application Delivery Controller</p></div></a>
+
+        <a href="https://aws.amazon.com/marketplace/pp/B00B527JQ0/ref=mkt_ste_l2_mpL3Promo2/?nc1=h_l2_mp" class="navpromo-boxLink"><div style="padding:20px 12px;text-align:center;"><img src="./SparkEMR_files/logo-jaspersoft-mp-nav4.png" alt="Jaspersoft" style="margin-bottom:10px;"><br><span style="font-size:12px;font-weight:bold;">Jaspersoft Reporting &amp; Analytics</span>
+        <p style="font-size:10px;line-height:12px;text-align:center;margin:0;">Commercial open source reporting and analytics server built for AWS</p></div></a>
+        
+        <a href="https://aws.amazon.com/marketplace/pp/B00AA27RK4/ref=mkt_ste_l2_mpL3Promo3/?nc1=h_l2_mp" class="navpromo-boxLink"><div style="border-bottom: 0;padding:10px 12px 20px;text-align:center;"><img src="./SparkEMR_files/logo-debian-mp-nav.png" alt="Debian" style="margin-bottom:10px;"><br><span style="font-size:12px;font-weight:bold;">Debian image provided by Debian.org</span></div></a>
+
+      </div>
+
+  </div>
+  <div id="ddfo-cat-prodsol-11-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Start-ups on AWS</li>
+        
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/start-ups/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/start-ups/&#39;);"><p class="ddfo-a-content">Start-ups use AWS for everything their app needs. Launch in a few clicks without up front costs.</p><span class="hlp-linkText">Learn more about Start-ups on AWS »</span></a></li>
+
+     <li class="ddfo-li-divider-above"><a class="ddfo-a-block" href="https://aws.amazon.com/activate/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/activate/&#39;);" style="margin-top: 10px;"><strong>AWS Activate</strong>
+          <div class="ddfo-sub-title">
+            Amazon Web Services startup program
+          </div></a>
+        </li>
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/web-mobile-social/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/web-mobile-social/&#39;);"><strong>Web, Mobile, Social</strong>
+          <div class="ddfo-sub-title">
+            Power web, social and mobile apps in the Cloud
+          </div></a>
+        </li>
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/big-data/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/big-data/&#39;);"><strong>Big Data</strong>
+          <div class="ddfo-sub-title">
+            Store and process large datasets to solve business problems
+          </div></a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/8/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+
+      <div class="promo-box">
+      <span class="button promo-button">Get Started Now »</span>
+      <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+      <span class="promo-sub-title txt-green">Compute</span>
+      <p><b>750 hours</b> of Linux and Windows Micro Instances</p>
+
+      <span class="promo-sub-title txt-red">Storage</span>
+      <p><b>30 GB</b> of Block Storage<br>
+         <b>5 GB</b> of Object Storage</p>
+
+      <span class="promo-sub-title txt-blue">SQL Database</span>
+      <p><b>750 hours</b> and <b>20 GB</b> of database storage</p>
+
+      <p><span class="small-link txt-linkText">AWS Free Tier Details »</span></p>
+      </div>
+    </div>
+    </a>
+
+  </div>
+  
+  <div id="ddfo-cat-prodsol-12-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Enterprises on AWS</li>
+        
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/enterprise-it/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/enterprise-it/&#39;);"><p class="ddfo-a-content">Enterprises use AWS to deliver IT innovation globally, improving agility and resiliency while reducing costs.</p><span class="hlp-linkText">Learn more about Enterprises on AWS »</span></a></li>
+
+        <li class="ddfo-li-divider-above"><a class="ddfo-a-block" href="https://aws.amazon.com/business-applications/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/business-applications/&#39;);" style="margin-top: 10px;"><strong>Business Applications</strong>
+          <div class="ddfo-sub-title">
+            Run enterprise applications in the Cloud
+          </div></a>
+        </li>
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/backup-storage/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/backup-storage/&#39;);"><strong>Backup &amp; Storage </strong>
+          <div class="ddfo-sub-title">
+            Store and retrieve any data, anywhere, any time
+          </div></a>
+        </li>
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/security/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/security/&#39;);"><strong>Security Center</strong>
+          <div class="ddfo-sub-title">
+            Learn about AWS Cloud security and how to build secure applications
+          </div></a>
+        </li>
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/economics/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/economics/&#39;);"><strong>Economics Center</strong>
+          <div class="ddfo-sub-title">
+            Find calculators and other tools to help you lower costs
+          </div></a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/9/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+
+      <div class="promo-box">
+      <span class="button promo-button">Get Started Now »</span>
+      <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+      <span class="promo-sub-title txt-green">Compute</span>
+      <p><b>750 hours</b> of Linux and Windows Micro Instances</p>
+
+      <span class="promo-sub-title txt-red">Storage</span>
+      <p><b>30 GB</b> of Block Storage<br>
+         <b>5 GB</b> of Object Storage</p>
+
+      <span class="promo-sub-title txt-blue">SQL Database</span>
+      <p><b>750 hours</b> and <b>20 GB</b> of database storage</p>
+
+      <p><span class="small-link txt-linkText">AWS Free Tier Details »</span></p>
+      </div>
+    </div>
+    </a>
+
+  </div>
+
+  <div id="ddfo-cat-prodsol-13-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Partners</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/solutions/solution-providers/?nc1=h_l2_p" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/solutions/solution-providers/?nc1=h_l2_p&#39;);">
+            <strong>Find AWS Partners</strong>
+            <div class="ddfo-sub-title">Find qualified APN Partners to help you with your AWS projects</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/partners/overview/?nc1=h_l2_p" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/partners/overview/?nc1=h_l2_p&#39;);">
+            <strong>Join the AWS Partner Network</strong>
+            <div class="ddfo-sub-title">Learn about the benefits and requirements of the APN program</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://www.apn-portal.com/?nc1=h_l2_p" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/https://www.apn-portal.com/?nc1=h_l2_p&#39;);">
+            <strong>Login to the APN Portal</strong>
+            <div class="ddfo-sub-title">Download content and engage with AWS through the partner-only section of the AWS website</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/solutions/premier-consulting-partners/?nc1=h_l2_p" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/solutions/premier-consulting-partners/?nc1=h_l2_p&#39;);">
+            <strong>Premier Consulting Partners</strong>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="ddfo-l2-promo-stack promo-stack-nopad">
+      <div class="promo-stack-header" style="text-align:center;font-size:10px;padding:6px;color:#b3b3b3;">FEATURED PARTNERS</div>
+
+      <a href="http://www.aws-partner-directory.com/PartnerDirectory/PartnerDetail?Name=Cloudnexa" class="navpromo-boxLink"><div style="padding:5px 12px 10px;text-align:center;"><img src="./SparkEMR_files/cloudnexa-logo-new1.png" alt="cloudnexa" style="margin-bottom:0;"><br><span style="font-size:12px;font-weight:bold;">cloudnexa</span>
+      <p style="font-size:10px;line-height:12px;margin:0;text-align:center;">Cloud management solutions leader for business and government</p></div></a>
+
+      <a href="http://www.aws-partner-directory.com/PartnerDirectory/PartnerDetail?Name=Trend+Micro+Incorporated" class="navpromo-boxLink"><div style="padding:20px 12px;text-align:center;"><img src="./SparkEMR_files/trend-micro-logo-150-transparent.png" alt="Trend Micro" style="margin-bottom:0;"><br><span style="font-size:12px;font-weight:bold;">Trend Micro</span>
+      <p style="font-size:10px;line-height:12px;margin:0;text-align:center;">Enterprise-class cloud security optimized for AWS</p></div></a>
+      
+      <a href="http://www.aws-partner-directory.com/PartnerDirectory/PartnerDetail?Name=Smartronix" class="navpromo-boxLink"><div style="border-bottom: 0;padding:5px 12px 10px;text-align:center;"><img src="./SparkEMR_files/smartronix-logo-150-trans.png" alt="Smartronix" style="margin-bottom:0;"><br><span style="font-size:12px;font-weight:bold;">Smartronix</span>
+      <p style="font-size:10px;line-height:12px;margin:0;text-align:center;">Delivering innovative, secure, and agile technology solutions</p>
+      </div></a>
+
+    </div>
+
+  </div>
+  
+  <div id="ddfo-cat-prodsol-14-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Government &amp; Education</li>
+
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/government-education/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/government-education/&#39;);"><p class="ddfo-a-content">Public Sector organizations use AWS to deliver IT innovation globally, improving agility and resiliency while reducing costs.</p><span class="hlp-linkText">Learn more about Government &amp; Education »</span></a></li>
+
+        <li class="ddfo-li-divider-above"><a class="ddfo-a-block" href="https://aws.amazon.com/federal/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/federal/&#39;);" style="margin-top: 10px;"><strong>Federal Government</strong>
+          <div class="ddfo-sub-title">
+            Run mission-critical applications in the Cloud for your agency
+          </div></a>
+        </li>
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/stateandlocal/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/stateandlocal/&#39;);"><strong>State and Local Government</strong>
+          <div class="ddfo-sub-title">
+            Drive efficiencies through the cloud at every level of Government
+          </div></a>
+        </li>
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/education/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/education/&#39;);"><strong>Education</strong>
+          <div class="ddfo-sub-title">
+            Facilitate demanding research and course objectives with Cloud solutions
+          </div></a>
+        </li>
+        <li><a class="ddfo-a-block" href="https://aws.amazon.com/government-education/defense/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/government-education/defense/&#39;);"><strong>Defense and Aerospace</strong>
+          </a>
+        </li>
+       <li class="ddfo-li-divider-above"><a class="ddfo-a-block" href="https://aws.amazon.com/govcloud-us/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/govcloud-us/&#39;);"><strong>AWS GovCloud (US) Region</strong>
+          <div class="ddfo-sub-title">
+            Featuring FIPS 140-2 Compliant End Points for Government Oriented Workloads
+          </div></a>
+        </li>
+
+        
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/10/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+
+      <div class="promo-box">
+      <span class="button promo-button">Get Started Now »</span>
+      <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+      <span class="promo-sub-title txt-green">Compute</span>
+      <p><b>750 hours</b> of Linux and Windows Micro Instances</p>
+
+      <span class="promo-sub-title txt-red">Storage</span>
+      <p><b>30 GB</b> of Block Storage<br>
+         <b>5 GB</b> of Object Storage</p>
+
+      <span class="promo-sub-title txt-blue">SQL Database</span>
+      <p><b>750 hours</b> and <b>20 GB</b> of database storage</p>
+
+      <p><span class="small-link txt-linkText">AWS Free Tier Details »</span></p>
+      </div>
+    </div>
+    </a>
+
+  </div>
+
+  <div id="ddfo-cat-prodsol-15-item" class="ddfo-l2-wide">
+
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Websites &amp; Web Apps</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/websites/?nc1=h_l2_wa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/websites/?nc1=h_l2_wa&#39;);">
+            <strong>Websites</strong>
+            <div class="ddfo-sub-title">Power web, social, and mobile apps in the cloud</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/ecommerce-applications/?nc1=h_l2_wa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/ecommerce-applications/?nc1=h_l2_wa&#39;);">
+            <strong>Ecommerce</strong>
+            <div class="ddfo-sub-title">Build secure and scalable online storefronts</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/mobile/?nc1=h_l2_wa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/mobile/?nc1=h_l2_wa&#39;);">
+            <strong>Mobile</strong>
+            <div class="ddfo-sub-title">Mobile-backend services and SDKs</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/digital-marketing/?nc1=h_l2_wa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/digital-marketing/?nc1=h_l2_wa&#39;);">
+            <strong>Digital Marketing</strong>
+            <div class="ddfo-sub-title">Highly scalable online advertising and marketing services in the cloud</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/web-applications/social-media/?nc1=h_l2_wa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/web-applications/social-media/?nc1=h_l2_wa&#39;);">
+            <strong>Social Media</strong>
+            <div class="ddfo-sub-title">Run apps that easily respond to viral growth</div>
+          </a>
+        </li>        
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace/ref=mkt_ste_L2_WWA" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/&#39;);">
+            <strong>AWS Marketplace »</strong>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B007IP8BKQ/ref=mkt_ste_l2_WebApps_f1?nc1=h_l2_wa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B007IP8BKQ/ref=mkt_ste_l2_WebApps_f1?nc1=h_l2_wa&#39;);">
+            <strong>WordPress powered by Bitnami</strong>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00GA8K12S/ref=mkt_ste_l2_WebApps_f2?nc1=h_l2_wa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00GA8K12S/ref=mkt_ste_l2_WebApps_f2?nc1=h_l2_wa&#39;);">
+            <strong>Movable Type 6</strong>
+          </a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B007OOIPFM/ref=mkt_ste_l2_WebApps_f3?nc1=h_l2_wa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B007OOIPFM/ref=mkt_ste_l2_WebApps_f3?nc1=h_l2_wa&#39;);"><strong>aiScaler Dynamic Site Acceleration &amp; Traffic Manager</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/b/2649338011/ref=mkt_ste_l2_WMS_cat" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/b/2649338011/ref=mkt_ste_l2_WMS_cat&#39;);"><strong>View All Related Products (80+) »</strong></a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/11/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+      
+      <div class="promo-box">
+      <span class="button promo-button">Get Started Now »</span>
+      <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+      <span class="promo-sub-title txt-green">Compute</span>
+      <p><b>750 hours</b> of Linux and Windows Micro Instances</p>
+
+      <span class="promo-sub-title txt-red">Storage</span>
+      <p><b>30 GB</b> of Block Storage<br>
+         <b>5 GB</b> of Object Storage</p>
+
+      <span class="promo-sub-title txt-blue">SQL Database</span>
+      <p><b>750 hours</b> and <b>20 GB</b> of database storage</p>
+
+      <p><span class="small-link txt-linkText">AWS Free Tier Details »</span></p>
+      </div>
+    </div>
+    </a>
+
+  </div>
+
+  <div id="ddfo-cat-prodsol-16-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Backup, Archive, &amp; DR</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/backup-storage/?nc1=h_l2_bsa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/backup-storage/?nc1=h_l2_bsa&#39;);">
+            <strong>Backup and Storage on AWS</strong>
+            <div class="ddfo-sub-title">Store and retrieve any data, anywhere, any time</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/disaster-recovery/?nc1=h_l2_bsa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/disaster-recovery/?nc1=h_l2_bsa&#39;);">
+            <strong>Disaster Recovery on AWS</strong>
+            <div class="ddfo-sub-title">Recover your systems and data quickly from a disaster</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/archive/?nc1=h_l2_bsa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/archive/?nc1=h_l2_bsa&#39;);">
+            <strong>Archiving</strong>
+            <div class="ddfo-sub-title">Archive your data for long-term retention</div>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace/ref=mkt_ste_L2_BSA" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/&#39;);"><strong>AWS Marketplace »</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00E4WSOPS/ref=mkt_ste_l2_Backup_f1?nc1=h_l2_bsa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00E4WSOPS/ref=mkt_ste_l2_Backup_f1?nc1=h_l2_bsa&#39;);"><strong>Cloud Protection Manager Standard Edition</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00EQE493U/ref=mkt_ste_l2_Backup_f2?nc1=h_l2_bsa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00EQE493U/ref=mkt_ste_l2_Backup_f2?nc1=h_l2_bsa&#39;);"><strong>SoftNAS Cloud</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00KSK0VJM/ref=mkt_ste_l2_Backup_f3?nc1=h_l2_bsa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00KSK0VJM/ref=mkt_ste_l2_Backup_f3?nc1=h_l2_bsa&#39;);"><strong>Riverbed SteelStore</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_backup?page=1&searchTerms=backup+archive&nc1=h_l2_bsa" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/search/results/ref=mkt_ste_l2_backup?page=1&amp;searchTerms=backup+archive&amp;nc1=h_l2_bsa&#39;);"><strong>View All Related Products (25+) »</strong></a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/14/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+
+      <div class="promo-box">
+      <span class="button promo-button">Get Started Now »</span>
+      <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+      <span class="promo-sub-title txt-green">Compute</span>
+      <p><b>750 hours</b> of Linux and Windows Micro Instances</p>
+
+      <span class="promo-sub-title txt-red">Storage</span>
+      <p><b>30 GB</b> of Block Storage<br>
+         <b>5 GB</b> of Object Storage</p>
+
+      <span class="promo-sub-title txt-blue">SQL Database</span>
+      <p><b>750 hours</b> and <b>20 GB</b> of database storage</p>
+
+      <p><span class="small-link txt-linkText">AWS Free Tier Details »</span></p>
+      </div>
+    </div>
+    </a>
+
+  </div>
+
+  <div id="ddfo-cat-prodsol-17-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Big Data &amp; HPC</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/big-data/?nc1=h_l2_bh" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/big-data/?nc1=h_l2_bh&#39;);">
+            <strong>Big Data</strong>
+            <div class="ddfo-sub-title">Store and process large datasets to solve business problems</div>
+          </a>
+        </li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/hpc/?nc1=h_l2_bh" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/hpc/?nc1=h_l2_bh&#39;);">
+            <strong>HPC</strong>
+            <div class="ddfo-sub-title">Run tightly-coupled and IO-intensive workloads to solve complex science, engineering and business problems</div>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/&#39;);"><strong>AWS Marketplace »</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B008B7WAAW/ref=mkt_ste_l2_BigDataHPC_f1?nc1=h_l2_bh" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B008B7WAAW/ref=mkt_ste_l2_BigDataHPC_f1?nc1=h_l2_bh&#39;);"><strong>MapR M5</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B0078U7Z9Y/ref=mkt_ste_l2_BigDataHPC_f2?nc1=h_l2_bh" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B0078U7Z9Y/ref=mkt_ste_l2_BigDataHPC_f2?nc1=h_l2_bh&#39;);"><strong>Univa Grid Engine One Click HPC Head Node</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00A6VX4CE/ref=mkt_ste_l2_BigDataHPC_f3?nc1=h_l2_bh" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00A6VX4CE/ref=mkt_ste_l2_BigDataHPC_f3?nc1=h_l2_bh&#39;);"><strong>ScaleOut Analytics Server</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_bigdata?page=1&category=6153421011&nc1=h_l2_bh" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/search/results/ref=mkt_ste_l2_bigdata?page=1&amp;category=6153421011&amp;nc1=h_l2_bh&#39;);"><strong>View All Related Products (130+) »</strong></a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/15/free/&#39;);">
+      <div class="ddfo-l2-promo-stack">
+        <span class="promo-title">Try AWS for Free</span>
+
+        <div class="promo-box">
+        <span class="button promo-button">Get Started Now »</span>
+        <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+        <span class="promo-sub-title txt-green">Compute</span>
+        <p><b>750 hours</b> of Linux and Windows Micro Instances</p>
+
+        <span class="promo-sub-title txt-red">Storage</span>
+        <p><b>30 GB</b> of Block Storage<br>
+           <b>5 GB</b> of Object Storage</p>
+
+        <span class="promo-sub-title txt-blue">SQL Database</span>
+        <p><b>750 hours</b> and <b>20 GB</b> of database storage</p>
+
+        <p><span class="small-link txt-linkText">AWS Free Tier Details »</span></p>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div id="ddfo-cat-prodsol-18-item" class="ddfo-l2-wide">
+
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Gaming</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/game-hosting/?nc1=h_l2_g" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/game-hosting/?nc1=h_l2_g&#39;);">
+            <strong>Game Development and Operations</strong>
+            <div class="ddfo-sub-title">Services and infrastructure for mobile, web, PC, and console games</div>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace/ref=mkt_ste_L2_Gaming" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/&#39;);"><strong>AWS Marketplace »</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00FGB60MK/ref=mkt_ste_l2_Gaming_f1?nc1=h_l2_g" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00FGB60MK/ref=mkt_ste_l2_Gaming_f1?nc1=h_l2_g&#39;);"><strong>ORBX Cloud Game Console</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00FYCBRE2/ref=mkt_ste_l2_Gaming_f2?nc1=h_l2_g" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B00FYCBRE2/ref=mkt_ste_l2_Gaming_f2?nc1=h_l2_g&#39;);"><strong>Windows Server 2008R2 with NVIDIA GRID GPU Driver</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B008CIX2MA/ref=mkt_ste_l2_Gaming_f3?nc1=h_l2_g" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/pp/B008CIX2MA/ref=mkt_ste_l2_Gaming_f3?nc1=h_l2_g&#39;);"><strong>Red5 Media Server</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_gaming?page=1&searchTerms=gaming&nc1=h_l2_g" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/marketplace/search/results/ref=mkt_ste_l2_gaming?page=1&amp;searchTerms=gaming&amp;nc1=h_l2_g&#39;);"><strong>View All Related Products (10+) »</strong></a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/13/free/&#39;);">
+    <div class="ddfo-l2-promo-stack">
+      <span class="promo-title">Try AWS for Free</span>
+
+      <div class="promo-box">
+        <span class="button promo-button">Get Started Now »</span>
+        <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+        <span class="promo-sub-title txt-green">Compute</span>
+        <p><b>750 hours</b> of Linux and Windows Micro Instances</p>
+  
+        <span class="promo-sub-title txt-red">Storage</span>
+        <p><b>30 GB</b> of Block Storage<br>
+           <b>5 GB</b> of Object Storage</p>
+  
+        <span class="promo-sub-title txt-blue">SQL Database</span>
+        <p><b>750 hours</b> and <b>20 GB</b> of database storage</p>
+  
+        <p><span class="small-link txt-linkText">AWS Free Tier Details »</span></p>
+      </div>
+    </div>
+    </a>
+    
+  </div>
+
+  <div id="ddfo-cat-prodsol-19-item" class="ddfo-l2-wide">
+    <div class="ddfo-l2-inner">
+      <ul>
+        <li class="ddfo-l2-li-title">Digital Media</li>
+        <li>
+          <a class="ddfo-a-block" href="https://aws.amazon.com/digital-media/?nc1=h_l2_d" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/digital-media/?nc1=h_l2_d&#39;);">
+            <strong>Digital Media</strong>
+            <div class="ddfo-sub-title">Media storage, archiving, processing, and delivery from the cloud</div>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="marketplace-links">
+        <li class="marketplace-header">
+          <a href="https://aws.amazon.com/marketplace/ref=mkt_ste_L2_DM"><strong>AWS Marketplace »</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00IGJMIOI/ref=mkt_ste_l2_DigitalMedia_f1?nc1=h_l2_d"><strong>Adobe Media Server 5 Extended</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00IPTQDI6/ref=mkt_ste_l2_DigitalMedia_f2?nc1=h_l2_d"><strong>Wowza Streaming Engine 4: Standard</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/pp/B00BJTMBEY/ref=mkt_ste_l2_DigitalMedia_f3?nc1=h_l2_d"><strong>Helix Universal Server Pro</strong></a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/marketplace/search/results/ref=mkt_ste_l2_media?page=1&category=2649341011&nc1=h_l2_d"><strong>View All Related Products (65+) »</strong></a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="https://aws.amazon.com/free/" onclick="javascript:urchinTracker(&#39;/clicktrack/nav/12/free/&#39;);">
+      <div class="ddfo-l2-promo-stack">
+        <span class="promo-title">Try AWS for Free</span>
+
+        <div class="promo-box">
+        <span class="button promo-button">Get Started Now »</span>
+        <span class="promo-sub-title">AWS Free Tier Includes:</span><br>
+        <span class="promo-sub-title txt-green">Compute</span>
+        <p><b>750 hours</b> of Linux and Windows Micro Instances</p>
+
+        <span class="promo-sub-title txt-red">Storage</span>
+        <p><b>30 GB</b> of Block Storage<br>
+           <b>5 GB</b> of Object Storage</p>
+
+        <span class="promo-sub-title txt-blue">SQL Database</span>
+        <p><b>750 hours</b> and <b>20 GB</b> of database storage</p>
+
+        <p><span class="small-link txt-linkText">AWS Free Tier Details »</span></p>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+</div>
+</div><div class="ddfo">
+  <div class="ddfo-l1">
+  <ul>
+    <li><a class="ddfo-a-block" href="https://console.aws.amazon.com/support/home#/">Support Center</a></li>
+  </ul>
+
+  <ul class="ddfo-ul-divider-above">
+    <li><a class="ddfo-a-block" href="https://forums.aws.amazon.com/">Forums</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/documentation/">Documentation</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/faqs/">Technical FAQs</a></li>
+    <li><a class="ddfo-a-block" href="http://status.aws.amazon.com/">Service Health Dashboard</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/premiumsupport/">AWS Support Plans</a></li>
+    <li><a class="ddfo-a-block" href="https://aws.amazon.com/contact-us/">Contact Us</a></li>
+  </ul>
+</div>
+</div></div>
+
+  <div id="global-top-links">
+    <a href="https://portal.aws.amazon.com/gp/aws/developer/registration/index.html" id="gtl-sign-up">Sign Up</a>
+    <a href="https://console.aws.amazon.com/" id="gtl-dd-account-console" class="ddfo-btn">My Account / Console<div class="nav-down-arrow nav-sprite"></div></a>
+  <a href="https://aws.amazon.com/articles/4926593393724923#" id="gtl-dd-language" class="disabled ddfo-btn" title="No other languages are available for this page">English<div class="nav-down-arrow nav-sprite"></div></a><div class="ddfo">
+  <div class="ddfo-l1-skinny">
+  <ul>
+    <li><a class="ddfo-a-block" id="gtl-console-link" href="https://console.aws.amazon.com/">AWS Management Console</a></li>
+    <li><a class="ddfo-a-block" href="https://portal.aws.amazon.com/gp/aws/manageYourAccount">My Account</a></li>
+    <li><a class="ddfo-a-block" href="https://console.aws.amazon.com/billing/home">Billing &amp; Cost Management</a></li>
+    <li><a class="ddfo-a-block" href="https://console.aws.amazon.com/iam/home?nc1=h_m_sc#security_credential">Security Credentials</a></li>
+  </ul>
+</div>
+</div><div class="ddfo">
+  <div class="ddfo-l1-skinny">
+  <ul>
+    <li id="gtl-lang-de"><a class="ddfo-a-block" href="https://aws.amazon.com/de/articles/4926593393724923">Deutsch</a></li>
+    
+    <li id="gtl-lang-es"><a class="ddfo-a-block" href="https://aws.amazon.com/es/articles/4926593393724923">Español</a></li>
+    <li id="gtl-lang-fr"><a class="ddfo-a-block" href="https://aws.amazon.com/fr/articles/4926593393724923">Français</a></li>
+    <li id="gtl-lang-jp"><a class="ddfo-a-block" href="https://aws.amazon.com/jp/articles/4926593393724923">日本語</a></li>
+    <li id="gtl-lang-pt"><a class="ddfo-a-block" href="https://aws.amazon.com/pt/articles/4926593393724923">Português</a></li>
+    <li id="gtl-lang-ko"><a class="ddfo-a-block" href="https://aws.amazon.com/ko/articles/4926593393724923">한국어</a></li>
+    <li id="gtl-lang-cn"><a class="ddfo-a-block" href="https://aws.amazon.com/cn/articles/4926593393724923">中文 (简体)</a></li>
+  </ul>
+</div>
+</div></div>
+</div>
+
+<!-- /header -->
+
+      </div>
+      <div id="bd" class="yui-t2">
+        <div id="yui-main">
+          <div class="yui-b">
+            
+
+
+<h1 class="title">
+  <img src="./SparkEMR_files/articles-25x25.png" width="25" height="25" alt="">
+  Run Spark and Spark SQL on Amazon Elastic MapReduce
+</h1>
+
+
+
+            
+
+
+<div id="trail">
+  <a href="https://aws.amazon.com/articles">Articles &amp; Tutorials</a><span class="sep">&gt;</span>Run Spark and Spark SQL on Amazon Elastic MapReduce
+</div>
+
+
+
+            
+
+
+
+            
+
+
+<div id="desc">
+  This tutorial walks you through installing and operating Spark, a fast and general engine for large-scale data processing, on an Amazon EMR cluster. You will also create and query a dataset in Amazon S3 using Spark SQL, and learn how to monitor Spark on an Amazon EMR cluster with Amazon CloudWatch.
+</div>
+
+
+            
+
+
+<div id="details">
+  <h2 class="h1 detailsTitle">Details</h2>
+  <div id="detailsMeta">
+    <div class="linerMeta">
+      
+
+ <div class="yui-gc" id="articleHeader">
+    <div id="articleMeta">
+      <table class="width66 metaTable">
+        
+<tbody><tr>
+  <td class="metaLeft">Submitted By:</td>
+  <td class="metaRight">
+  <a href="https://forums.aws.amazon.com/profile.jspa?userID=189372">Jonathan Fritz</a>
+</td>
+</tr>
+
+          <tr>
+            <td class="metaLeft">
+              AWS Products Used:
+            </td>
+            <td class="metaRight">
+              
+Elastic MapReduce</td>
+          </tr>
+          <tr>
+            <td class="metaLeft">
+              Created On: 
+            </td>
+            <td class="metaRight">
+              
+<span class="timestamp">February 23, 2013  6:38 PM GMT</span>
+
+            </td>
+          </tr>
+          <tr>
+            <td class="metaLeft">
+              Last Updated:
+            </td>
+            <td class="metaRight">
+              
+<span class="timestamp">November 20, 2014  9:45 PM GMT</span>
+
+            </td>
+          </tr>
+        </tbody></table>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+  <div id="content">
+    <div id="catalogItem">
+      <p>With the proliferation of data today, a common scenario is the need to store large data sets, process that data set iteratively, and discover insights using low-latency relational queries. Using the Hadoop Distributed File System (HDFS) and Hadoop MapReduce components in Apache Hadoop, these workloads can be distributed over a cluster of computers. By distributing the data and processing over many computers, your results return quickly even over large datasets because multiple computers share the load required for processing. However, with Hadoop MapReduce, the speed and flexibility of querying that dataset is constrained by the time it takes for disk I/O operations and the two step (map and reduce steps) batch processing framework.</p>
+
+<p>Apache Spark, an open-source cluster computing system optimized for speed, can provide much faster performance and flexibility than Hadoop MapReduce. Apache Spark speeds up data analytics by using a directed acyclic graph (DAG) execution engine and in-memory computing. Spark's primary abstraction is a distributed collection of items called a Resilient Distributed Dataset (RDD), which is designed to be cached in-memory. For more information on Spark, see <a href="http://spark.apache.org/" target="_blank">http://spark.apache.org/</a>.</p>
+
+<p>For those who don't want to use Scala or Python to process data with Spark, Spark SQL allows queries expressed in SQL and HiveQL, and can query data from a SchemaRDD or a table in the Hive metastore. SchemaRDDs can be created from existing RDDs, Parquet files, JSON objects, or by selecting data from a Hive table. Spark SQL can return results up to 30 times faster than the same queries run on Hive, making it a good application for a low-latency data warehouse. Spark SQL supports other features of Apache Hive as well, such as serialization formats and user-defined functions (UDFs). It also has JDBC and ODBC connectivity. For more information about Spark SQL, see <a href="https://spark.apache.org/sql/" target="_blank">https://spark.apache.org/sql/</a>.</p>
+
+<p>Amazon EMR is a web service that makes it easy to run Hadoop clusters using AWS resources such as Amazon EC2 virtual server instances. This means that you can launch clusters without having to maintain a data center of physical hardware, and you only pay for the capacity you need. This is especially useful for applications that use the Spark framework. Since Spark stores data in memory, its CPU and memory requirements can vary depending on the workload. When you run your cluster on Amazon EMR, you can size your cluster to meet those needs, and change the number of nodes in a cluster as Spark's resource requirements change. For more information about Amazon EMR, see <a href="http://aws.amazon.com/elasticmapreduce/" target="_blank">http://aws.amazon.com/elasticmapreduce/</a>.</p>
+
+<p>In this article, we will explain how to install Spark on a Hadoop cluster managed by Amazon EMR and query data from Amazon S3 using Spark SQL. By combining these technologies, you can run low-latency queries on large datasets using Spark SQL and while also taking advantage of the operational and cost benefits provided by Amazon EMR.</p>
+
+<p>The following diagram illustrates running Spark on a Hadoop cluster managed by Amazon EMR. When you launch a cluster, Amazon EMR provisions virtual server instances from Amazon EC2. You can then use an Amazon EMR bootstrap action to install Spark on the cluster. Spark on Amazon EMR can process data from an Amazon S3 bucket or stored in HDFS, and results from queries can also be persisted back to Amazon S3 or HDFS after analysis.</p>
+
+<p>
+    <img width="600" src="./SparkEMR_files/Spark-Diagram.jpg">
+</p>
+
+<h2>Spark with YARN on an Amazon EMR cluster</h2>
+
+<p>In order to install Spark, we will use an EMR bootstrap action. You can use Amazon EMR bootstrap actions to install applications, libraries, or software on your Amazon EMR cluster. For example, you can install applications such as Matlab, Nutch, Presto, and Accumulo. For more information about bootstrap actions, see <a href="http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/Bootstrap.html" target="_blank">http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/Bootstrap.html</a>.</p>
+<p>Note: The bootstrap action used in this tutorial assumes that you are using AMI version 3.2. Running Spark on YARN requires AMIs with Hadoop 2 (YARN is Hadoop 2's resource manager). At the time of writing this article, the bootstrap will install:</p>
+<ul>
+<li>Hadoop 1.0.3 (AMI 2.x): Spark 0.8.1</li>
+<li>Hadoop 2.2.0 (AMI 3.0.x): Spark 1.0.0</li>
+<li>Hadoop 2.4.0 (AMI 3.1.x and 3.2.x): Spark 1.1.0</li>
+</ul>
+
+<ol>
+<li>Sign up for AWS, if you do not already have an account. You can do this at <a href="https://aws-portal.amazon.com/gp/aws/developer/registration/index.html">https://aws-portal.amazon.com/gp/aws/developer/registration/index.html</a></li>
+<li>Install the <a href="http://aws.amazon.com/cli/">AWS CLI</a></li>
+<li>Optional: If you want to monitor Spark cluster metrics using Amazon CloudWatch, you will need to create an Instance Profile (IAM role for EC2) that grants access to this services. Click <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/create-role-xacct.html" target="_blank">here</a> to learn how to create an Instance Profile. See the Appendix of this article for an example IAM policy. Also, to use Instance Profiles with EMR, you will need to create and use an EMR Service role. Click <a href="http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-iam-roles-defaultroles.html#emr-iam-roles-creatingroles" target="_blank">here</a> to learn how create an EMR Service role.</li>
+
+<li>Create your Spark cluster with Amazon EMR using the AWS CLI. Also, in the below commands, Substitute "MYKEY" value for the KeyName parameter with the name of the EC2 key pair you want to use to SSH into the master node of your EMR cluster. 
+<ol>
+  <li>a.	Run the following command using the AWS CLI if you want to use Amazon CloudWatch with your Spark cluster (The command below assumes the Instance Profile you created is named SparkRole and the EMR Service Role is named EMR_DefaultRole):<br>
+<pre>aws emr create-cluster --name SparkCluster --ami-version 3.2 --instance-type m3.xlarge --instance-count 3 --service-role EMR_DefaultRole --ec2-attributes KeyName=MYKEY,InstanceProfile=SparkRole --applications Name=Hive --bootstrap-actions Path=s3://support.elasticmapreduce/spark/install-spark
+</pre></li>
+<li>b.	Or, run the following command using the EMR CLI if you do not plan to use Amazon CloudWatch with your Spark cluster:<br>
+<pre>aws emr create-cluster --name SparkCluster --ami-version 3.2 --instance-type m3.xlarge --instance-count 3 --ec2-attributes KeyName=MYKEY --applications Name=Hive --bootstrap-actions Path=s3://support.elasticmapreduce/spark/install-spark
+</pre>
+</li>
+</ol>
+
+</li>
+</ol>
+
+<p>The CLI will return a statement similar to the following. The j-xxxxxxxxxx value is the identifier for your cluster (called a Cluster ID or jobflow in Amazon EMR).</p>
+<p>
+</p><pre>ClusterId j-367J67T8QGKAD
+</pre>
+<p></p>
+ 
+<p>
+    The cluster should be ready in 5-10 minutes. You can check the status of the cluster as it is initializing by running the following command.
+</p>
+ 
+<p>
+</p><pre>aws emr describe-cluster --cluster-id j-xxxxxxxxxx
+</pre>
+<p></p>
+ 
+<p>This returns a list of the clusters with their current status. When your cluster is in the WAITING status, you are ready for the next step.
+</p>
+ 
+<h2>Sample Data for our Queries</h2>
+<p>To test that the Spark infrastructure is installed and working properly, we will sort the Wikistat public data set. Wikistat contains Wikipedia article traffic statistics covering a 16-month period from October 1, 2008 to February 6, 2010. The full data set is online at    <a href="http://aws.amazon.com/datasets/4182">http://aws.amazon.com/datasets/4182</a>.  The data in Wikistat is formatted as follows:
+</p><ul>
+<li>Each log file is named with the date and time of collection: <em>pagecounts-20090430-230000.gz.</em></li>
+<li>Each line in the log file has four fields: projectcode, pagename, pageviews, and bytes.</li>
+</ul>
+A sample of the type of data stored in Wikistat is shown below.
+<p></p>
+ 
+<p>
+</p><pre>en Barack_Obama 997 123091092
+en Barack_Obama%27s_first_100_days 8 850127
+en Barack_Obama,_Jr 1 144103
+en Barack_Obama,_Sr. 37 938821
+en Barack_Obama_%22HOPE%22_poster 4 81005
+en Barack_Obama_%22Hope%22_poster 5 102081
+</pre>
+<p></p>
+ 
+<p>Because the full Wikistat dataset is fairly large, we have excerpted a single file and copied it to the Amazon S3 bucket at <a href="https://s3.amazonaws.com/bigdatademo/sample/wiki/pagecounts-20100212-050000.gz">https://s3.amazonaws.com/bigdatademo/sample/wiki/pagecounts-20100212-050000.gz</a>.  In our queries, we will parse the data file and sort the dataset based on number of pageviews.
+</p>
+ 
+<h2>Using Spark</h2>
+ 
+<p>To analyze this data using Spark:</p>
+ 
+<ol>
+<li>Connect to the master node of your Amazon EMR cluster using SSH. For information on how to do so, see
+    <a href="http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-connect-master-node-ssh.html">
+        http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-connect-master-node-ssh.html</a> and read the "Connect to the Master Node Using the AWS CLI or Amazon EMR CLI" section.</li>
+<li>From the command line, run the following command to open the Spark shell.<br>
+<pre>   
+MASTER=yarn-client /home/hadoop/spark/bin/spark-shell
+</pre>
+</li>
+ 
+<li>
+<p>From the Spark command line, run the following commands. The first line tells Spark which file to process. In the second line we split each line of the dataset into multiple fields, taking the first and the second fields (page title and pageview count) and perform a groupBy based on the key (pagetitle). The third line caches the data in memory in case we need to re-run this job. This eliminates the need to read our dataset from Amazon S3 again. The last line sorts the list and provides the result.</p>
+ 
+<p>
+</p><pre>   
+val file = sc.textFile("s3://bigdatademo/sample/wiki/")
+ 
+val reducedList = file.map(l =&gt; l.split(" ")).map(l =&gt; (l(1), l(2).toInt)).reduceByKey(_+_, 3)
+ 
+reducedList.cache
+ 
+val sortedList = reducedList.map(x =&gt; (x._2, x._1)).sortByKey(false).take(50)
+</pre>
+<p>
+</p></li>
+</ol>
+ 
+<p>Spark should return a result similar to the following:</p>
+ 
+<p>
+</p><pre>INFO spark.SparkContext: Job finished: take at <console>:16, took 8.015384737 s
+
+sortedList: Array[(Int, String)] = Array((328476,Special:Search), (217924,Main_Page), (73900,Special:Random), (65047,404_error/), (55814,%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8), (21521,Special:Export/Where_Is_My_Mind), ...
+</console></pre>
+<p></p>
+ 
+<h2>Using Spark SQL</h2>
+ 
+<p>If you decide to use the Spark SQL command line, it's very similar to working with Apache Hive. You can even write your queries in HiveQL, the query language used by Hive, and utilize the Hive metastore. In this article, we will use the Spark SQL command line and HiveQL for querying the dataset. You can also use Spark SQL to query SchemaRDDs from the Spark command line instead.</p>
+ 
+
+<ol>
+<li>Return to the Hadoop command line. If you need to SSH back into your cluster, follow the first step in the previous section ("Using Spark").</li>
+<li>From the command line, launch Spark by running the following command.<br>
+ 
+<p>
+</p><pre>MASTER=yarn-client /home/hadoop/spark/bin/spark-sql --executor-memory 4G
+</pre>
+</li>
+  
+<li>
+<p>From the Spark SQL command line, run the following query. This creates a Hive table and uses the same Wikistat data that we stored in Amazon S3 for running the Spark SQL queries in the previous example. The following Spark SQL query loads the data from Amazon S3 into a Hive table, sorts the Wikistat data, and selects the top ten pages with the highest pageview count. Note that the table is cached in memory from disk using the CACHE command, and the subsequent queries are run against that in-memory cache for faster response.</p>
+ 
+<p>
+</p><pre>SET spark.sql.shuffle.partitions=10;
+create table wikistat (projectcode string, pagename string, pageviews int, pagesize int) ROW FORMAT DELIMITED FIELDS TERMINATED BY ' ' location 's3://bigdatademo/sample/wiki/';
+CACHE TABLE wikistat;
+select pagename, sum(pageviews) c from wikistat group by pagename order by c desc limit 10;
+</pre>
+<br>
+<pre>INFO spark.SparkContext: Job finished: collect at HiveContext.scala:415, took 0.038523897 s
+Special:Search  328476
+Main_Page       217924
+Special:Random  73900
+404_error/      65047
+%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8  55814
+Special:Export/Where_Is_My_Mind 21521
+Wikipedia:Portada       19722
+%E7%89%B9%E5%88%A5:%E6%A4%9C%E7%B4%A2   18312
+Pagina_principale       17080
+Alexander_McQueen       17067
+</pre>
+<p></p>
+</li>
+</ol>
+ 
+ <h2>Monitoring Your Spark Cluster with Amazon CloudWatch</h2>
+
+<p>
+Amazon EMR provides the ability to monitor your Spark cluster with Amazon CloudWatch and configure actions/alerts based on specified metrics.
+</p>
+
+<p>
+Some of the metrics you can monitor include:
+	</p><ul>
+		<li>JVM.heap.init</li>
+		<li>JVM.heap.max</li>
+		<li>JVM.heap.usage</li>
+		<li>Master.apps.number</li>
+		<li>Master.workers.number</li>
+	</ul>
+<p>
+
+</p><p>To see the complete list of available Spark metrics, open the Amazon CloudWatch console, select Custom Metrics and then select Spark.</p>
+
+<img width="600" src="./SparkEMR_files/spark_cloudwatch_metrics.png">
+
+<p>It can be very useful to visualize trends in these metrics.  For example, the following image shows the trend in JVM.heap.used in a sample Spark cluster:</p>
+
+<img width="600" src="./SparkEMR_files/spark_graph.png">
+	
+<p>You can set up actions/alerts when one or more metrics reaches a specified threshold.  For example, you can be notified or take an action (example: add more nodes) when your Spark application is reaching its JVM.heap.max limit. For more details on Amazon CloudWatch alerts see the CloudWatch documentation: <a href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/AlarmThatSendsEmail.html">
+http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/AlarmThatSendsEmail.html</a>.</p>
+
+<h2>Clean Up</h2>
+
+<p>When you are done running queries using Spark and Spark SQL, you should shut down your cluster to avoid incurring further charges.</p>
+
+<ol>
+<li>Disconnect from the master node by terminating your SSH session.</li>
+<li>From the command line on your local machine, run the following command to terminate your Amazon EMR cluster. Replace j-367J67T8QGKAD with the identifier of your cluster.<br>
+<pre>aws emr terminate-clusters --cluster-id j-367J67T8QGKAD
+</pre></li>
+<li>If you chose to enable logging on your Amazon EMR cluster (this wasn't in the example command to launch your cluster, but you could have chosen to use logging), delete any log files stored in your Amazon S3 bucket, s3://yours3bucket, where yours3bucket is replaced by the name of the bucket you specified when you launched the cluster. For more information, see <a href="http://docs.aws.amazon.com/AmazonS3/latest/UG/DeletinganObject.html" target="_blank">http://docs.aws.amazon.com/AmazonS3/latest/UG/DeletinganObject.html</a></li>
+</ol>
+ 
+<h2>Credits</h2>
+ 
+<p>We want to thank Federico Baldo, Christopher Bozeman, Chad Schmutzer, Rahul Bhartia, and Manjeet Chayel from AWS who helped develop the latest bootstrap action for installing and running Spark on YARN with Amazon EMR. Also, a special thanks goes out to Parviz Deyhim who contributed the original article.
+</p>
+
+
+<h2>Appendix: Sample IAM Role</h2>
+
+<p>
+The following IAM role permission grants full access to Amazon CloudWatch, Amazon SNS, and Amazon S3.  You may want to have more restrictive permissions than this.  (For example, you can restrict the S3 permissions to only certain bucket(s), not allow deletes, etc.)</p>
+
+<pre>{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "cloudwatch:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },	
+    {
+      "Effect": "Allow",
+      "Action": "sns:*",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:*",
+      "Resource": "*"
+    }
+  ]
+}
+</pre>
+<p></p>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+          </div>
+        </div>
+        <div class="yui-b" id="sideNav">
+          <div id="subNavA">
+            
+
+
+
+
+  <div class="decoratedBox " id="browseByCategory">
+    <div class="head">
+      <h4>Browse By Category</h4>
+    </div>
+    <div class="body">
+      <div class="liner">
+        
+
+    <h5>AWS Services</h5>
+    
+    <ul>
+        <li>
+          <a href="https://aws.amazon.com/articles/CloudFront?browse=1">Amazon CloudFront</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Amazon-EC2?browse=1">Amazon Elastic Compute Cloud</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Elastic-MapReduce?browse=1">Amazon Elastic MapReduce</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Amazon-FPS?browse=1">Amazon Flexible Payments Service</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Amazon-Mechanical-Turk?browse=1">Amazon Mechanical Turk</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Amazon-RDS?browse=1">Amazon Relational Database Service</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Amazon-SimpleDB?browse=1">Amazon SimpleDB</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Amazon-SES?browse=1">Amazon Simple Email Service</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Amazon-SQS?browse=1">Amazon Simple Queue Service</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Amazon-S3?browse=1">Amazon Simple Storage Service</a>
+        </li>
+        <li class="last">
+          <a href="https://aws.amazon.com/articles/AWS-Elastic-Beanstalk?browse=1">AWS Elastic Beanstalk</a>
+        </li>
+    </ul>
+
+    <h5>Technology</h5>
+    
+    <ul>
+        <li>
+          <a href="https://aws.amazon.com/articles/Java?browse=1">Java</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Mobile?browse=1">Mobile</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/PHP?browse=1">PHP</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Python?browse=1">Python</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/Ruby?browse=1">Ruby</a>
+        </li>
+        <li class="last">
+          <a href="https://aws.amazon.com/articles/.NET?browse=1">Windows &amp; .NET</a>
+        </li>
+    </ul>
+
+    <h5>SDKs</h5>
+    
+    <ul>
+        <li>
+          <a href="https://aws.amazon.com/articles/SDKs/Android?browse=1">AWS SDK for Android</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/SDKs/iOS?browse=1">AWS SDK for iOS</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/SDKs/Java?browse=1">AWS SDK for Java</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/SDKs/.NET?browse=1">AWS SDK for .NET</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/SDKs/PHP?browse=1">AWS SDK for PHP</a>
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/articles/SDKs/Python?browse=1">AWS SDK for Python</a>
+        </li>
+        <li class="last">
+          <a href="https://aws.amazon.com/articles/SDKs/Ruby?browse=1">AWS SDK for Ruby</a>
+        </li>
+    </ul>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+          <div id="subNavB">
+            
+
+
+
+
+
+  <div class="decoratedBox ">
+    <div class="head">
+      <h4>Developer Resources</h4>
+    </div>
+    <div class="body">
+      <div class="liner">
+        
+<ul>
+  <li><a href="https://aws.amazon.com/amis/">Amazon Machine Images (AMIs)</a></li>
+  <li><a href="https://aws.amazon.com/customerapps/">Customer Apps</a></li>
+  <li><a href="https://aws.amazon.com/developertools/">Developer Tools</a></li>
+  <li><a href="http://aws.amazon.com/documentation/">Documentation</a></li>
+  <li><a href="https://aws.amazon.com/datasets/">Public Data Sets</a></li>
+  <li><a href="https://aws.amazon.com/releasenotes/">Release Notes</a></li>
+  <li><a href="https://aws.amazon.com/code">Sample Code &amp; Libraries</a></li>
+  <li><a href="http://aws.amazon.com/security/">Security Center</a></li>
+  <li class="last"><a href="http://aws.amazon.com/resources/webinars/">Videos &amp; Webinars</a></li>
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <div id="ft">
+  <div id="globalFooter">
+  <div class="liner top">
+    Free to join. Only pay for what you use. <a class="signUpBtn" href="https://portal.aws.amazon.com/gp/aws/developer/registration/index.html">Sign Up</a>
+  </div>
+
+  <div class="liner middle">
+    <div class="links">
+      <div class="col first">
+        <h3>Learn</h3>
+        <ul class="last">
+          <li><a href="https://aws.amazon.com/products/">Products &amp; Services</a></li>
+          <li><a href="https://aws.amazon.com/solutions/case-studies/">Case Studies</a></li>
+          <li><a href="https://aws.amazon.com/economics/">Economics Center</a></li>
+          <li><a href="https://aws.amazon.com/architecture/">Architecture Center</a></li>
+          <li><a href="https://aws.amazon.com/security/">Security Center</a></li>
+          <li><a href="https://aws.amazon.com/whitepapers/">Whitepapers</a></li>
+          <li><a href="https://aws.amazon.com/training/">Training &amp; Certification</a></li>
+          <li><a href="https://aws.amazon.com/resources/webinars/">Webinars</a></li>
+          <li><a href="https://aws.amazon.com/industries/">Industry Solutions</a></li>
+          <li><a href="https://aws.amazon.com/solutions/aws-solutions/">Use Case Solutions</a></li>
+          <li><a href="https://aws.amazon.com/usergroups/">User Groups</a></li>
+          <li class="last"><a href="https://aws.amazon.com/partners/overview/">Partners</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Developer Resources</h3>
+        <ul>
+          <li><a href="https://aws.amazon.com/marketplace/ref=mkt_ste_dev_resources_ftr">AWS Marketplace</a></li>
+          <li><a href="http://aws.amazon.com/code">Sample Code &amp; Libraries</a></li>
+          <li><a href="https://aws.amazon.com/tools">SDKs &amp; Tools</a></li>
+          <li><a href="https://aws.amazon.com/documentation">Documentation</a></li>
+          <li><a href="http://aws.amazon.com/articles">Articles &amp; Tutorials</a></li>
+          <li><a href="https://aws.amazon.com/console/">Management Console</a></li>
+          <li class="last"><a href="https://aws.amazon.com/fps/">Flexible Payments Service</a></li>
+        </ul>
+        
+        <h3>Developer Centers</h3>
+        <ul class="last">
+          <li><a href="https://aws.amazon.com/java/">Java</a></li>
+          <li><a href="https://aws.amazon.com/javascript/">JavaScript</a></li>
+          <li><a href="https://aws.amazon.com/mobile/">Mobile</a></li>
+          <li><a href="https://aws.amazon.com/php/">PHP</a></li>
+          <li><a href="https://aws.amazon.com/python/">Python</a></li>
+          <li><a href="https://aws.amazon.com/ruby/">Ruby</a></li>
+          <li class="last"><a href="https://aws.amazon.com/net/">Windows &amp; .NET</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Manage Your Account</h3>
+        <ul>
+          <li><a href="https://aws.amazon.com/console">Management Console</a></li>
+          <li><a href="https://console.aws.amazon.com/billing/home">Billing &amp; Cost Management</a></li>
+          <li><a href="https://portal.aws.amazon.com/gp/aws/developer/account/index.html?action=edit-aws-profile">Personal Information</a></li>
+          <li><a href="https://portal.aws.amazon.com/gp/aws/developer/account/index.html?action=edit-payment-method">Payment Method</a></li>
+          <li><a href="https://aws.amazon.com/iam/">AWS Identity &amp; Access Management</a></li>
+          <li><a href="https://portal.aws.amazon.com/gp/aws/developer/account/index.html?action=access-key">Security Credentials</a></li>
+          <li class="last"><a href="https://aws.amazon.com/contact-us/">Request Service Limit Increases</a></li>
+        </ul>
+
+        <h3>Support</h3>
+        <ul class="last">
+          <li><a href="https://aws.amazon.com/premiumsupport/">AWS Support</a></li>
+          <li><a href="http://status.aws.amazon.com/">Service Health Dashboard</a></li>
+          <li><a href="https://forums.aws.amazon.com/">Discussion Forums</a></li>
+          <li><a href="https://aws.amazon.com/faqs/">FAQs</a></li>
+          <li class="last"><a href="https://aws.amazon.com/contact-us/">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="col last">
+        <h3>About AWS</h3>
+
+        <ul>
+          <li><a href="https://aws.amazon.com/what-is-cloud-computing/">What is Cloud Computing?</a></li>
+          <li><a href="https://aws.amazon.com/about-aws/events/">Events &amp; Webinars</a></li>
+          <li><a href="https://aws.amazon.com/careers/">Careers at AWS</a></li>
+          <li><a href="https://aws.amazon.com/contact-us/">Contact Us</a></li>
+          <li><a href="https://aws.amazon.com/about-aws/whats-new/">Announcements (What's New?)</a></li>
+          <li><a href="http://aws.typepad.com/aws/" target="_blank">AWS Blog</a></li>
+          <li><a href="http://phx.corporate-ir.net/phoenix.zhtml?c=176060&p=irol-newsWebServices">Press Releases</a></li>
+          <li><a href="https://aws.amazon.com/about-aws/media-coverage/">Media Coverage</a></li>
+          <li><a href="https://aws.amazon.com/legal/">Legal</a></li>
+        </ul>
+        
+        <ul class="connect">
+          <li><a href="https://www.facebook.com/amazonwebservices"><img src="./SparkEMR_files/icon_facebook.png" width="26" height="26" alt="Share on Facebook" title="AWS on Facebook"></a></li>
+          <li><a href="https://aws.amazon.com/rss/whats-new.rss"><img src="./SparkEMR_files/icon_rss.png" width="26" height="26" alt="RSS Feed" title="RSS Feed"></a></li>
+          <li><a href="http://twitter.com/#!/awscloud"><img src="./SparkEMR_files/icon_twitter.png" width="26" height="26" alt="Twitter" title="AWS on Twitter"></a></li>
+          <li class="last"><a href="http://aws.typepad.com/"><img src="./SparkEMR_files/icon_aws_blog.png" width="26" height="26" alt="" title="AWS blog"></a></li>
+        </ul>
+
+        <a class="were-hiring" title="We are Hiring" href="https://aws.amazon.com/careers/"><img src="./SparkEMR_files/were_hiring_2.png" width="165" height="89"></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="liner bottom">
+    <div class="copyright">
+      <a href="https://aws.amazon.com/terms/">Site Terms</a><a href="https://aws.amazon.com/privacy/">Privacy Policy</a>©2013, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+    </div>
+    <div class="logoMania">
+      <img src="./SparkEMR_files/logo_an_amazon_company_160x20.png" width="160" height="20" alt="An Amazon.com company">
+    </div>
+  </div>
+</div>
+</div>
+    </div>
+  
+
+
+
+
+</body></html>

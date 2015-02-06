@@ -1,0 +1,108 @@
+div {
+  line-height: 1.5em;
+}
+
+#trail {
+  font-size: 11px;
+  line-height: 11px;
+  margin-top: 12px;
+  margin-bottom: 19px;
+  clear: both;
+}
+#trail .sep {
+  margin: 0 4px;
+  color: #999;
+}
+h1.title {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 9px;
+}
+h1.title .query {
+  color: black;
+  font-size: 16px;
+}
+h1.title img {
+  vertical-align: middle;
+  float: left;
+  margin-right: 9px;
+}
+h1, h2, h3, h4, h5, h6 {
+   clear: both;
+}
+span.arrow {
+  font-size: 15px;
+  color: #e07a21;
+  font-weight: bold;
+}
+
+.promoBox {
+  margin-bottom: 30px;
+  margin-top: -12px;
+}
+.promoBox .body {
+  border: 1px solid #eceadb;
+  background-color: white;
+}
+.promoBox .body .liner {
+  padding: 22px 19px 18px;
+  line-height: 15px;
+}
+.promoBox .body .liner p {
+  margin-bottom: 8px;
+}
+.promoBox .body .liner p.last {
+  margin-bottom: 0;
+}
+.promoBox .body .liner .liner {
+  padding: 0 10px 10px;
+}
+.promoBox .head {
+  background: transparent;
+  border: 0;
+  position: relative;
+  height: auto;
+  width: auto;
+}
+.promoBox .head h4 {
+  background-color: white;
+  padding-right: 5px;
+  margin: 0;
+  position: relative;
+  top: 7px;
+  display: inline;
+  color: #e47911;
+  font: bold 14px Verdana;
+}
+.promoBox .body .logo {
+  margin: 8px 0 13px 0;
+  display: block;
+}
+#sideNav #browseByCategory h5 {
+  color: #555;
+  padding: 7px 10px 3px 10px;
+}
+.learnMore {
+  background: transparent url(//d36cz9buwru1tt.cloudfront.net/orange_carat_2.png) no-repeat 0 5px;
+  padding-left: 8px;
+}
+
+#sideNav #subNavB .decoratedBox.wrappedTitle .head {
+  top: 18px;
+  background-color: white;
+}
+#sideNav #subNavB .decoratedBox.wrappedTitle .body {
+  padding-top: 18px;
+}
+#shareArticlesBox .head {
+  margin-right: 26px;
+}
+
+#errorPage {
+  text-align: left;
+  margin-top: 0;
+}
+#errorPage .error {
+  margin-top: 24px;
+  text-align: left;
+}

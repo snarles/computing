@@ -1,0 +1,5 @@
+aws emr create-cluster --name SparkCluster --ami-version 3.2 --instance-type m3.xlarge --instance-count 3 --ec2-attributes KeyName=HomePair --applications Name=Hive --bootstrap-actions Path=s3://support.elasticmapreduce/spark/install-spark
+
+
+    "ClusterId": "j-3H54F5VXNU060"
+
