@@ -3,3 +3,67 @@ aws emr create-cluster --name SparkCluster --ami-version 3.2 --instance-type m3.
 
     "ClusterId": "j-3H54F5VXNU060"
 
+aws emr describe-cluster --cluster-id j-3H54F5VXNU060
+
+MASTER=yarn-client /home/hadoop/spark/bin/spark-shell
+
+val file = sc.textFile("s3://bigdatademo/sample/wiki/")
+ 
+val reducedList = file.map(l => l.split(" ")).map(l => (l(1), l(2).toInt)).reduceByKey(_+_, 3)
+ 
+reducedList.cache
+ 
+val sortedList = reducedList.map(x => (x._2, x._1)).sortByKey(false).take(50)
+
+
+
+## Massive ops!!
+
+
+bash /root/py27.sh
+pssh -h /root/spark-ec2/slaves bash py27.sh
+export IPYTHON_OPTS="notebook --profile=nbserver"
+bash /root/spark/sbin/stop-all.sh
+bash /root/spark/sbin/start-all.sh
+bash /root/spark/bin/pyspark
+
+
+cd ~/Downloads
+
+
+ssh -i HomePair.pem root@54.201.177.174
+
+ssh -i HomePair.pem root@54.149.127.108 -o StrictHostKeyChecking=no 
+ssh -i HomePair.pem root@54.213.15.236 -o StrictHostKeyChecking=no 
+ssh -i HomePair.pem root@54.68.190.215 -o StrictHostKeyChecking=no 
+ssh -i HomePair.pem root@54.213.30.214 -o StrictHostKeyChecking=no 
+ssh -i HomePair.pem root@54.191.212.33 -o StrictHostKeyChecking=no 
+ssh -i HomePair.pem root@54.213.15.230 -o StrictHostKeyChecking=no 
+
+54.201.177.174:8080
+54.201.177.174:8888
+
+aws s3 cp s3://braindatatest/chris1/chris1_bvec .
+aws s3 cp s3://braindatatest/chris1/chris1_part00 .
+aws s3 cp s3://braindatatest/chris1/chris1_part01 .
+aws s3 cp s3://braindatatest/chris1/chris1_part02 .
+aws s3 cp s3://braindatatest/chris1/chris1_part03 .
+aws s3 cp s3://braindatatest/chris1/chris1_part04 .
+aws s3 cp s3://braindatatest/chris1/chris1_part05 .
+
+cd /root/ephemeral-hdfs/bin
+
+./hadoop fs -ls
+
+./hadoop fs -copyFromLocal /root/chris1_part00 part00
+./hadoop fs -copyFromLocal /root/chris1_part01 part01
+./hadoop fs -copyFromLocal /root/chris1_part02 part02
+./hadoop fs -copyFromLocal /root/chris1_part03 part03
+./hadoop fs -copyFromLocal /root/chris1_part04 part04
+./hadoop fs -copyFromLocal /root/chris1_part05 part05
+
+
+
+
+
+
