@@ -10,6 +10,7 @@ It is strongly recommended to follow the instructions in the links to implement 
 * http://ipython.org/ipython-doc/1/interactive/public_server.html
 * http://jayunit100.blogspot.com/2014/07/ipython-on-spark.html
 * http://nbviewer.ipython.org/gist/JoshRosen/6856670
+* http://stackoverflow.com/questions/27610367/pyspark-importerror-cannot-import-name-accumulators
 
 ### Modify the security groups
 
@@ -66,6 +67,7 @@ pip install matplotlib
 pip install --upgrade ipython
 pip install --upgrade numpy
 pip install --upgrade matplotlib
+pip install py4j
 ```
 Copy the file to all the slave nodes.
 ```
