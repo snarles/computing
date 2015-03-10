@@ -13,9 +13,14 @@ We will walk through the following instructions in the lecture.
  *  A Spark cluster is already running.
     Go to XX.XX.XX.XXX:8080 to see the status
 
- *  In another tab, go to https://github.com/snarles/computing/
+ *  Go to coursework and in the folder Spark-01,
+    download "class.pem" and "class.ppk",
+    save them in your "Downloads" folder.
 
- *  Click the link which says "Download zip" (on right side)
+ *  If you cannot download from coursework,
+    go to https://github.com/snarles/computing/
+    Click the link which says "Download zip" (on right side)
+    The files are in the folder "class"
 
  *  Connect to the Spark master node
 
@@ -24,12 +29,11 @@ We will walk through the following instructions in the lecture.
 ======================================================================
 
  1. Open the terminal (command + space, "terminal")
- 2. Inside terminal: Navigate to the downloaded folder
-      cd ~/Downloads/computing-master
-      cd class
+ 2. Inside terminal: use 
+      cd ~/Downloads
+    to change to the folder where you downloaded the keys
  3. Inside there is a key file class.pem.  Use the command:
       chmod 400 class.pem
-
  4. Now log into the node indicated by your index card:
       ssh -i class.pem root@XX.XX.XX.XXX
 
@@ -45,9 +49,8 @@ We will walk through the following instructions in the lecture.
  4. In step 3a, use
       root@XX.XX.XX.XXX
     as the host name.
- 4. In step 4b of the instructions, find the folder you downloaded
-    from github, and go to the class folder.
-    The file you need is class.ppk
+ 4. In step 4b of the instructions, find your Downloads folder.
+    The file you need is class.ppk.
 
 ======================================================================
                             Inside ssh
@@ -74,6 +77,7 @@ IDs, and the number of times that user listened to that artist.
 ======================================================================
 
 [1. Configure python]
+
 We will need Python 2.7 for this tutorial. It is already installed on
 the master and slave nodes, but we need to configure Spark to use
 it. There is a script called py27.sh which does this. We will run it
@@ -87,6 +91,7 @@ slaves. Type in the following:
 After configuring Python 2.7 we need to restart the cluster.
 
 [2. Restart Spark]
+
 Type in
 
   cd /root/spark/sbin
@@ -101,6 +106,7 @@ your browser: it will not find a page. Start the cluster with
 and confirm it by refreshing the page XX.XX.XX.XXX:8080.
 
 [3. Setup screen]
+
 Eventually we will want to be hosting the notebook while also doing
 othing things on the server. To accomplish this kind of multi-tasking,
 we use the screen utility.
